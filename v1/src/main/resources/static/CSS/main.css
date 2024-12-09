@@ -1,0 +1,359 @@
+*{
+    text-align: left;
+}
+body{
+    background-color: black;
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+    margin: 0;
+    overflow: hidden;
+    width: 100%;
+}
+h1{
+    font-size: 65px;
+}
+h2{
+    font-size: 35px;
+}
+h3{
+    font-size: 18px;
+}
+svg {
+    overflow: visible;
+}
+.header{
+    height: 96%;
+    display: flex;
+    justify-content: center;
+}
+.header .h-container{
+    width: 80%;
+    margin-top: 5%;
+    height: 80%;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    column-gap: 20%;
+}
+.header .h-container .card{
+    background-color: black;
+    height: 80%;
+    width: 50%;
+}
+.header .h-container .card .card-header{
+    display: flex;
+    flex-direction: column;
+    row-gap: 30px;
+    color: white;
+    width: 100%;
+    background-color: black;
+}
+.header .h-container .card .card-body{
+    width: 50%;
+}
+.header .h-container .card .card-body .logo{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    height: fit-content;
+    width: auto;
+    justify-content: center;
+}
+.header .h-container .card .card-body button{
+    background-color: white;
+    border-color: white;
+    color: black;
+    font-weight: 650;
+    border-radius: 20px; 
+    font-size: medium;
+}
+.header .h-container .card .card-body .create{
+    background-color: rgb(36, 160, 237);
+    color:white;
+    border-color: rgb(36, 160, 237);
+}
+.header .h-container .card .card-body .create:hover{
+    background-color: rgb(26, 120, 177);
+    border-color: rgb(26, 120, 177);
+}
+.header .h-container .card .card-body .info{
+    font-size: smaller;
+    color: rgb(105, 105, 105);
+}
+.header .h-container .card .card-body .info a{
+    text-decoration: none;
+}
+.header .h-container .card .card-body .info a:hover{
+    text-decoration: underline; 
+}
+.header .h-container .card .card-body .px-3{
+    color: white;
+}
+.header .h-container .card .card-footer{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    width: 50%;
+    background-color: black;
+}
+.header .h-container .card .card-footer h3{
+    color: white;
+}
+.header .h-container .card .card-footer button{
+    background-color: black;
+    border-color:rgb(105, 105, 105);
+    border-radius: 50px;
+    color:rgb(36, 160, 237);
+}
+.header .h-container .card .card-footer .sign-in:hover{
+    background-color: rgba(36, 160, 237, 0.2); /* Set low opacity */
+}
+.header .h-container .logo{
+    width: 35vw;
+    height: 60vh;
+}
+.header .h-container .logo img{
+    width: 100%;
+    height: 100%;
+}
+.footer{
+    width: 100%;    
+    display: flex;
+    justify-content: center;
+    margin-bottom: 0px;
+}
+.footer .f-container{
+width: 80%;
+height: fit-content;
+display: flex;
+flex-direction: row;
+align-items: center;
+justify-content: space-between;
+column-gap: 5px;
+font-size: smaller;
+}
+.footer .f-container .certificate{
+height: fit-content;
+display: flex;
+align-items: center;
+text-wrap: nowrap;
+}
+.footer .f-container img{
+    width: 1vw;
+    height: 1vh;
+}
+.footer .f-container .cert-text{
+    color: rgb(105, 105, 105);
+}
+.footer .f-container a{
+    text-decoration: none;
+    color: rgb(105, 105, 105); 
+}
+.footer .f-container a:hover {
+    text-decoration: underline; 
+}
+/* Sign In Modal*/
+.modal {
+    display: none; /* Hidden by default */
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(105, 188, 240, 0.1); /* Overlay effect */
+    justify-content: center;
+    align-items: center;
+  }
+.modal .modal-dialog{
+    border-radius: 15px;
+}
+.modal .modal-content{
+    background-color: black;
+    border-radius: 15px;
+  }  
+.modal .modal-content .modal-styl{
+    display: flex;
+    flex-direction: row;  
+    align-items: center;
+    background-color: black; /* Dark background for the modal */
+    border-radius: 15px;
+}
+.modal .modal-content .modal-styl .close{
+    width: calc(50% - 25px);
+} 
+.modal .modal-content .modal-styl .close button{ 
+    margin-left: 7.5px;
+}
+.modal .modal-content .pad{
+ display: flex;
+ flex-direction: column;
+ padding: 0px 120px 50px 120px;   
+}
+.modal .modal-content .modal-header{
+    color: white;
+    border-color: black;
+}
+.modal .modal-content .modal-header h1{
+    font-size: 30px;
+}
+.modal .modal-content .modal-body{
+    display: flex;
+    flex-direction: column;
+    row-gap: 10px;
+}
+.modal .modal-content .modal-body .d-grid{
+    display: flex;
+    flex-direction: column;
+    row-gap: 25px !important;
+}
+.modal .modal-content .modal-body button{
+    background-color: white;
+    border-color: white;
+    color: black;
+    font-weight: 650;
+    border-radius: 20px; 
+    font-size: medium;
+
+}
+.modal .modal-content .modal-body .px-3{
+    color: white;
+    font-size: 20px;
+}
+.black-theme .form-control {
+    background-color: #000; 
+    color: #fff; 
+    border: 1px solid #444; 
+  }
+
+  .black-theme .form-control:focus {
+    background-color: #000; 
+    color: #fff; 
+    border-color: #666; 
+    box-shadow: none; 
+  }
+
+  .black-theme .form-desc {
+    color: #ccc; 
+  }
+  .black-theme .form-control:focus {
+    background-color: #000 !important; 
+    color: #fff !important; 
+    border-color: #666; 
+    box-shadow: none;
+  }
+  .black-theme .form-desc:hover,
+  .black-theme .form-desc:focus {
+    color: #fff !important;
+  }
+  .form-floating > label::after {
+    background-color: transparent !important;
+}
+.modal .modal-content .modal-footer{
+    border-color: black;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+}
+/* Sign up modal */
+.up-modal {
+    display: flex; /* Hidden by default */
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(105, 188, 240, 0.1); /* Overlay effect */
+    justify-content: center;
+    align-items: center;
+  }
+.up-modal .up-modal-dialog{
+    border-radius: 15px;
+}
+.up-modal .up-modal-content{
+    background-color: black;
+    border-radius: 15px;
+  }  
+.up-modal .up-modal-content .up-modal-styl{
+    display: flex;
+    flex-direction: row;  
+    align-items: center;
+    background-color: black; /* Dark background for the modal */
+    border-radius: 15px;
+}
+.up-modal .up-modal-content .up-modal-styl .close{
+    width: calc(50% - 25px);
+} 
+.up-modal .up-modal-content .up-modal-styl .up-close button{ 
+    margin-left: 7.5px;
+}
+.up-modal .up-modal-content .up-pad{
+ display: flex;
+ flex-direction: column;
+ padding: 0px 120px 50px 120px;   
+}
+.up-modal .up-modal-content .up-modal-header{
+    color: white;
+    border-color: black;
+}
+.up-modal .up-modal-content .up-modal-header h1{
+    font-size: 30px;
+}
+.up-modal .up-modal-content .up-modal-body{
+    display: flex;
+    flex-direction: column;
+    row-gap: 10px;
+}
+.up-modal .up-modal-content .up-modal-body .up-d-grid{
+    display: flex;
+    flex-direction: column;
+    row-gap: 25px !important;
+}
+.up-modal .up-modal-content .up-modal-body button{
+    background-color: white;
+    border-color: white;
+    color: black;
+    font-weight: 650;
+    border-radius: 20px; 
+    font-size: medium;
+
+}
+.up-modal .up-modal-content .up-modal-body .up-px-3{
+    color: white;
+    font-size: 20px;
+}
+.black-theme .form-control {
+    background-color: #000; 
+    color: #fff; 
+    border: 1px solid #444; 
+  }
+
+  .black-theme .form-control:focus {
+    background-color: #000; 
+    color: #fff; 
+    border-color: #666; 
+    box-shadow: none; 
+  }
+
+  .black-theme .up-form-desc {
+    color: #ccc; 
+  }
+  .black-theme .form-control:focus {
+    background-color: #000 !important; 
+    color: #fff !important; 
+    border-color: #666; 
+    box-shadow: none;
+  }
+  .black-theme .form-desc:hover,
+  .black-theme .form-desc:focus {
+    color: #fff !important;
+  }
+  .form-floating > label::after {
+    background-color: transparent !important;
+}
+.up-modal .up-modal-content .up-modal-footer{
+    border-color: black;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+}
