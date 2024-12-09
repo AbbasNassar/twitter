@@ -1,13 +1,13 @@
 package com.x;
 
+import org.jdbi.v3.core.Jdbi;
+import org.jdbi.v3.sqlobject.SqlObjectPlugin;
+
 import com.google.inject.AbstractModule;
 import com.google.inject.Provides;
 import com.google.inject.Singleton;
-
-import org.jdbi.v3.core.Jdbi;
-import org.jdbi.v3.sqlobject.SqlObjectPlugin;
 // N-Tier Architecture Implementation -> Infrastructure Layer
-public class ToDoModule extends AbstractModule {
+public class UserModule extends AbstractModule {
     @Override
     protected void configure() {
         // Bind Jdbi instance
@@ -18,15 +18,12 @@ public class ToDoModule extends AbstractModule {
         bind(Jdbi.class).toInstance(jdbi);
 
         // Bind DAO
-        // Bind Repository, Service, and Controller
-        bind(ToDoRepository.class);
-        bind(ToDoService.class);
-        bind(ToDoController.class);
+        bind(UserService.class);
+        bind(UserController.class);
     }
-
     @Provides
     @Singleton
-    public ToDoDAO todoDao(Jdbi jdbi){
-        return jdbi.onDemand(ToDoDAO.class);
+    public UserDAO todoDao(Jdbi jdbi){
+        return jdbi.onDemand(UserDAO.class);
     }
 }

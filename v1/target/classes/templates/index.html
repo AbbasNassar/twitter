@@ -9,15 +9,17 @@
       integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH"
       crossorigin="anonymous"
     />
-    <link rel="stylesheet" href="../static/CSS/main.css" />
+    <script src="https://unpkg.com/htmx.org@2.0.3" integrity="sha384-0895/pl2MU10Hqc6jd4RvrthNlDiE9U1tWmX7WRESftEDRosgxNsQG/Ze9YMRzHq" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="/CSS/main.css" />
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
     <title>X</title>
-    <link rel="icon" type="image/x-icon" href="../static/img/X_logo.jpg">
+    <link rel="icon" type="image/x-icon" href="/img/X_logo.jpg">
   </head>
   <body>
     <div class="header">
       <div class="h-container">
         <div class="logo">
-            <img src="../static/img/X_logo.jpg" alt="X_logo">
+            <img src="/img/X_logo.jpg" alt="X_logo">
         </div>
         <div class="card">
           <div class="card-header">
@@ -26,20 +28,20 @@
           </div>
           <div class="card-body">
             <div class="d-grid gap-2">
-              <button class="btn btn-primary" type="button"><img src="../static/img/7123025_logo_google_g_icon.svg" alt="Google logo" height="30px" width="auto">Sign up with Google</button>
-              <button class="btn btn-primary" type="button"><img src="../static/img/104490_apple_icon.svg" alt="Apple logo" height="30px" width="auto">Sign up with Apple</button>
+              <button class="btn btn-primary" type="button"><img src="/img/7123025_logo_google_g_icon.svg" alt="Google logo" height="30px" width="auto">Sign up with Google</button>
+              <button class="btn btn-primary" type="button"><img src="/img/104490_apple_icon.svg" alt="Apple logo" height="30px" width="auto">Sign up with Apple</button>
               <div class="d-flex align-items-center">
                 <hr class="flex-grow-1 text-white">
                 <span class="px-3">or</span>
                 <hr class="flex-grow-1 text-white">
             </div>
-            <button class="btn btn-primary create" type="button">Create account</button>
+            <button class="btn btn-primary create" type="button" hx-on:click="document.querySelector('#upModal').style.display='flex'">Create account</button>
             <span class="info">By signing up, you agree to the <a href="#">Terms of Service</a> and <a href="#">Privacy Policy</a>, including <a href="#">Cookie Use</a>.</span>
             </div>
           </div>
           <div class="card-footer">
             <h3>Already have an account?</h3>
-            <button class="btn btn-primary sign-in" type="button">Sign In</button>
+            <button class="btn btn-primary sign-in" type="button" hx-on:click="document.querySelector('#modal').style.display='flex'">Sign In</button>
           </div>
         </div>
       </div>
@@ -63,18 +65,18 @@
           <a href="#">Devolopers</a>
           <a href="#">Directory</a>
           <a href="#">Settings</a>
-          <div class = "certificate"><img src="../static/img/copyright-svgrepo-com.svg" alt="copyright"><div class="cert-text">X Corp 2024.</div></div>
+          <div class = "certificate"><img src="/img/copyright-svgrepo-com.svg" alt="copyright"><div class="cert-text">X Corp 2024.</div></div>
         </div>
       </div>
       <!--Sign in modal -->
-      <div class="modal" tabindex="-1">
+      <div id="modal" class="modal" tabindex="-1">
         <div class="modal-dialog">
           <div class="modal-content">
            <div class="modal-styl">
             <div data-bs-theme="dark" class="close">
-              <button type="button" class="btn-close" aria-label="Close"></button>
+              <button type="button" class="btn-close" aria-label="Close" hx-on:click="document.querySelector('#modal').style.display='none'"></button>
               </div>
-            <img src="../static/img/X_logo.jpg" alt="X_logo" width="50vw" height="50vh">
+            <img src="/img/X_logo.jpg" alt="X_logo" width="50vw" height="50vh">
            </div>
             <div class="pad">
               <div class="modal-header">
@@ -82,8 +84,8 @@
               </div>
               <div class="modal-body">
                 <div class="d-grid gap-2">
-                  <button class="btn btn-primary" type="button"><img src="../static/img/7123025_logo_google_g_icon.svg" alt="Google logo" height="30px" width="auto">Sign up with Google</button>
-                  <button class="btn btn-primary" type="button"><img src="../static/img/104490_apple_icon.svg" alt="Apple logo" height="30px" width="auto">Sign up with Apple</button>
+                  <button class="btn btn-primary" type="button"><img src="/img/7123025_logo_google_g_icon.svg" alt="Google logo" height="30px" width="auto">Sign up with Google</button>
+                  <button class="btn btn-primary" type="button"><img src="/img/104490_apple_icon.svg" alt="Apple logo" height="30px" width="auto">Sign up with Apple</button>
                 </div>
                   <div class="d-flex align-items-center">
                     <hr class="flex-grow-1 text-white">
@@ -95,7 +97,7 @@
                   <label for="floatingInput" class="form-desc">Phone, email, or username</label>
                 </div>
                 <div class="form-floating mb-3 black-theme">
-                  <input type="email" class="form-control" id="floatingInput" placeholder="name@example.com">
+                  <input type="password" class="form-control" id="floatingInput" placeholder="name@example.com">
                   <label for="floatingInput" class="form-desc">Password</label>
                 </div>
                 <button class="btn btn-primary" type="button">Log In</button>
@@ -109,44 +111,50 @@
       </div>
     </div>
     <!-- Sign up modal-->
-    <div class="up-modal" tabindex="-1">
+    <div id="upModal" class="up-modal" tabindex="-1">
       <div class="up-modal-dialog">
         <div class="up-modal-content">
          <div class="up-modal-styl">
-          <div data-bs-theme="dark" class="close">
-            <button type="button" class="btn-close" aria-label="Close"></button>
+          <div data-bs-theme="dark" class="up-close">
+            <button type="button" class="btn-close" aria-label="Close" hx-on:click="document.querySelector('#upModal').style.display='none'"></button>
             </div>
-          <img src="../static/img/X_logo.jpg" alt="X_logo" width="50vw" height="50vh">
+          <img src="/img/X_logo.jpg" alt="X_logo" width="50vw" height="50vh">
          </div>
           <div class="up-pad">
             <div class="up-modal-header">
-              <h1 class="up-modal-title">Sign In to X</h1>
+              <h1 class="up-modal-title">Create your account</h1>
             </div>
             <div class="up-modal-body">
               <div class="up-d-grid gap-2">
-                <button class="btn btn-primary" type="button"><img src="../static/img/7123025_logo_google_g_icon.svg" alt="Google logo" height="30px" width="auto">Sign up with Google</button>
-                <button class="btn btn-primary" type="button"><img src="../static/img/104490_apple_icon.svg" alt="Apple logo" height="30px" width="auto">Sign up with Apple</button>
-              </div>
-                <div class="d-flex align-items-center">
-                  <hr class="flex-grow-1 text-white">
-                  <span class="up-px-3">or</span>
-                  <hr class="flex-grow-1 text-white">
+              <div class="form-floating mb-3 black-theme">
+                <input type="email" class="form-control" id="floatingInput" placeholder="name@example.com">
+                <label for="floatingInput" class="up-form-desc">Name</label>
               </div>
               <div class="form-floating mb-3 black-theme">
                 <input type="email" class="form-control" id="floatingInput" placeholder="name@example.com">
-                <label for="floatingInput" class="up-form-desc">Phone, email, or username</label>
+                <label for="floatingInput" class="up-form-desc">Email</label>
               </div>
               <div class="form-floating mb-3 black-theme">
-                <input type="email" class="form-control" id="floatingInput" placeholder="name@example.com">
+                <input type="password" class="form-control" id="floatingInput" placeholder="name@example.com">
                 <label for="floatingInput" class="up-form-desc">Password</label>
               </div>
-              <button class="btn btn-primary" type="button">Log In</button>
-              <button class="btn btn-primary" type="button">Forget password</button>
+              <div class="birth-date">
+                <h3>Date of birth</h3>
+                <span>
+                  This will not be shown publicly. Confirm your own age, even if this account is for a business, a pet, or something else.
+                </span>
+                <form class = "birth-day-container">
+                  <SELECT  id ="month" name = "mm" onchange="change_month(this)">
+                  </SELECT>
+                  <SELECT id ="day" name = "dd" >
+                  </SELECT>
+                  <SELECT id ="year" name = "yyyy" onchange="change_year(this)">
+                  </SELECT>
+              </div>
+              <script src="/Js/birth-date.js"></script>
           </div>
-          <div class="up-modal-footer">
-            <span>Don't have an account? <a href="#">Sign Up</a></span>
           </div>
-          </div>
+          <button class="btn btn-primary" type="button">Log In</button>
       </div>
     </div>
   </div>

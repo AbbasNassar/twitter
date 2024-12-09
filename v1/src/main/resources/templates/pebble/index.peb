@@ -1,0 +1,10 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>{{ websiteTitle }}</title>
+		<link rel="stylesheet" href="../../static/style.css">
+	</head>
+	<body>
+		<p>{{- content -}}</p>
+	</body>
+</html>

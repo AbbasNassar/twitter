@@ -1,1 +1,7 @@
+com\x\UserController.class
+com\x\UserDAO.class
 com\x\App.class
+com\x\UserService.class
+com\x\UserModule.class
+com\x\User.class
+com\x\FlywayMigration.class

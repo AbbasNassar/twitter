@@ -167,6 +167,7 @@ text-wrap: nowrap;
   }
 .modal .modal-dialog{
     border-radius: 15px;
+
 }
 .modal .modal-content{
     background-color: black;
@@ -257,7 +258,7 @@ text-wrap: nowrap;
 }
 /* Sign up modal */
 .up-modal {
-    display: flex; /* Hidden by default */
+    display: none; /* Hidden by default */
     position: fixed;
     top: 0;
     left: 0;
@@ -269,6 +270,7 @@ text-wrap: nowrap;
   }
 .up-modal .up-modal-dialog{
     border-radius: 15px;
+    max-width: 600px;
 }
 .up-modal .up-modal-content{
     background-color: black;
@@ -281,7 +283,7 @@ text-wrap: nowrap;
     background-color: black; /* Dark background for the modal */
     border-radius: 15px;
 }
-.up-modal .up-modal-content .up-modal-styl .close{
+.up-modal .up-modal-content .up-modal-styl .up-close{
     width: calc(50% - 25px);
 } 
 .up-modal .up-modal-content .up-modal-styl .up-close button{ 
@@ -290,6 +292,7 @@ text-wrap: nowrap;
 .up-modal .up-modal-content .up-pad{
  display: flex;
  flex-direction: column;
+ row-gap: 20px;
  padding: 0px 120px 50px 120px;   
 }
 .up-modal .up-modal-content .up-modal-header{
@@ -302,12 +305,11 @@ text-wrap: nowrap;
 .up-modal .up-modal-content .up-modal-body{
     display: flex;
     flex-direction: column;
-    row-gap: 10px;
+    color: white;
 }
 .up-modal .up-modal-content .up-modal-body .up-d-grid{
     display: flex;
     flex-direction: column;
-    row-gap: 25px !important;
 }
 .up-modal .up-modal-content .up-modal-body button{
     background-color: white;
@@ -344,8 +346,8 @@ text-wrap: nowrap;
     border-color: #666; 
     box-shadow: none;
   }
-  .black-theme .form-desc:hover,
-  .black-theme .form-desc:focus {
+  .black-theme .up-form-desc:hover,
+  .black-theme .up-form-desc:focus {
     color: #fff !important;
   }
   .form-floating > label::after {
@@ -357,3 +359,18 @@ text-wrap: nowrap;
     flex-direction: row;
     justify-content: flex-start;
 }
+.birth-date span{
+color: #666 !important;
+font-size: small;
+}
+.birth-day-container SELECT{
+    padding: 5px;
+    color:white;
+    background-color:black;
+    border-color: #444;
+    border-radius: 5px;
+  }
+.birth-day-container input.date{
+    width:50px;
+    padding: 5px;
+  }
