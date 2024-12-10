@@ -12,7 +12,7 @@ public class UserModule extends AbstractModule {
     protected void configure() {
         // Bind Jdbi instance
 
-        Jdbi jdbi = Jdbi.create("jdbc:mysql://localhost:3306/todo_db", "root", "123123")
+        Jdbi jdbi = Jdbi.create("jdbc:mysql://localhost:3306/twitter", "root", "123123")
         .installPlugin(new SqlObjectPlugin()); 
 
         bind(Jdbi.class).toInstance(jdbi);

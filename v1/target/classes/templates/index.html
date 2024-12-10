@@ -10,7 +10,7 @@
       crossorigin="anonymous"
     />
     <script src="https://unpkg.com/htmx.org@2.0.3" integrity="sha384-0895/pl2MU10Hqc6jd4RvrthNlDiE9U1tWmX7WRESftEDRosgxNsQG/Ze9YMRzHq" crossorigin="anonymous"></script>
-    <link rel="stylesheet" href="/CSS/main.css" />
+    <link rel="stylesheet" href="CSS/main.css" />
     <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
     <title>X</title>
     <link rel="icon" type="image/x-icon" href="/img/X_logo.jpg">
@@ -126,35 +126,35 @@
             </div>
             <div class="up-modal-body">
               <div class="up-d-grid gap-2">
-              <div class="form-floating mb-3 black-theme">
-                <input type="email" class="form-control" id="floatingInput" placeholder="name@example.com">
-                <label for="floatingInput" class="up-form-desc">Name</label>
-              </div>
-              <div class="form-floating mb-3 black-theme">
-                <input type="email" class="form-control" id="floatingInput" placeholder="name@example.com">
-                <label for="floatingInput" class="up-form-desc">Email</label>
-              </div>
-              <div class="form-floating mb-3 black-theme">
-                <input type="password" class="form-control" id="floatingInput" placeholder="name@example.com">
-                <label for="floatingInput" class="up-form-desc">Password</label>
-              </div>
-              <div class="birth-date">
-                <h3>Date of birth</h3>
-                <span>
-                  This will not be shown publicly. Confirm your own age, even if this account is for a business, a pet, or something else.
-                </span>
-                <form class = "birth-day-container">
-                  <SELECT  id ="month" name = "mm" onchange="change_month(this)">
-                  </SELECT>
-                  <SELECT id ="day" name = "dd" >
-                  </SELECT>
-                  <SELECT id ="year" name = "yyyy" onchange="change_year(this)">
-                  </SELECT>
-              </div>
-              <script src="/Js/birth-date.js"></script>
-          </div>
-          </div>
-          <button class="btn btn-primary" type="button">Log In</button>
+                <form hx-post="/users">
+                  <div class="form-floating mb-3 black-theme">
+                    <input type="text" class="form-control" id="nameInput" name="name" placeholder="name">
+                    <label for="floatingInput" class="up-form-desc">Name</label>
+                  </div>
+                  <div class="form-floating mb-3 black-theme"  hx-target="this" hx-swap="outerHTML">
+                    <input type="email" class="form-control" id="emailInput" name="email" placeholder="email" hx-post="/users/email">
+                    <label for="floatingInput" class="up-form-desc">Email</label>
+                  </div>
+                  <div class="form-floating mb-3 black-theme" hx-target="this" hx-swap="outerHTML">
+                    <input type="password" class="form-control" id="passwordInput" name="password" placeholder="password" hx-post="/users/password">
+                    <label for="floatingInput" class="up-form-desc">Password</label>
+                  </div>
+                  <div class="birth-date" id="dateForm">
+                    <h3>Date of birth</h3>
+                    <span>
+                      This will not be shown publicly. Confirm your own age, even if this account is for a business, a pet, or something else.
+                    </span>
+                      <SELECT  id ="month" name = "mm" onchange="change_month(this)">
+                      </SELECT>
+                      <SELECT id ="day" name = "dd" >
+                      </SELECT>
+                      <SELECT id ="year" name = "yyyy" onchange="change_year(this)">
+                      </SELECT>
+                  </div>
+                  <script src="Js/birth-date.js"></script>
+                  <button id="registerButton" class="btn btn-primary" type="button" hx-post="/users/addUser" hx-target="#dateForm" hx-swap="outerHTML" disabled>Log In</button>
+                </form>
+            </div>
       </div>
     </div>
   </div>

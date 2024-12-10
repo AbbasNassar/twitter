@@ -19,7 +19,7 @@ public class User {
     public User(String name, String email, String password, LocalDate dateOfBirth, LocalDateTime createdAt, LocalDateTime updatedAt) {
         this.name = name;
         this.email = email;
-        this.password = password;
+        this.password = PasswordUtils.encryptPassword(password);
         this.dateOfBirth = dateOfBirth;
         this.createdAt = createdAt;
         this.updatedAt = updatedAt;
@@ -28,10 +28,6 @@ public class User {
     // Getters and Setters
     public int getId() {
         return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
     }
 
     public String getName() {
@@ -55,8 +51,8 @@ public class User {
     }
 
     public void setPassword(String password) {
-        PasswordUtils.encryptPassword(password);
-        this.password = password;
+        String encPass = PasswordUtils.encryptPassword(password);
+        this.password = encPass;
     }
 
     public LocalDate getDateOfBirth() {

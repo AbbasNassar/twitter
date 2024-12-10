@@ -49,11 +49,8 @@ public class App {
         config.fileRenderer(new JavalinPebble(engine));
         config.staticFiles.add("static");
     });
-        app.get("/", ctx -> {
-            ctx.render("templates/index.html");
-        });
         app.start(9090);
-
+        controller.registerRoutes(app);
 
     }
 }

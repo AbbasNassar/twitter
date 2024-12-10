@@ -12,11 +12,14 @@ public interface UserDAO {
     @RegisterBeanMapper(User.class)
     List<User> getAllTodos();
 
-    @SqlUpdate("INSERT INTO users (id, name, email, password, dateOfBirth, createdAt, updatedAt) VALUES (:id, :name, :email, :password, :dateOfBirth, :createdAt, :updatedAt)")
-    void insertUser(@BindBean User user);
+    @SqlUpdate("INSERT INTO users (name, email, password, date_of_birth, created_at, updated_at) VALUES (:user.name, :user.email, :user.password, :user.dateOfBirth, :user.createdAt, :user.updatedAt)")
+    void insertUser(@BindBean("user") User user);
 
     @SqlUpdate("UPDATE users SET name = :name, email = :email, password = :password, dateOfBirth = :dateOfBirth ,updated_on = :updatedOn WHERE id = :id")
-    void updateUser(@BindBean User user);
+    void updateUser(@BindBean("user") User user);
+
+    @SqlQuery("SELECT email FROM users")             
+    List<String> listAllEmails();
 
     @SqlQuery("SELECT * FROM users ORDER BY id DESC")
     List<User> listAll();

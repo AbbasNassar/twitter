@@ -221,33 +221,33 @@ text-wrap: nowrap;
     color: white;
     font-size: 20px;
 }
-.black-theme .form-control {
+.modal .modal-content .modal-body .black-theme .form-control {
     background-color: #000; 
     color: #fff; 
     border: 1px solid #444; 
   }
 
-  .black-theme .form-control:focus {
+.modal .modal-content .modal-body .black-theme .form-control:focus {
     background-color: #000; 
     color: #fff; 
     border-color: #666; 
     box-shadow: none; 
   }
 
-  .black-theme .form-desc {
+.modal .modal-content .modal-body .black-theme .form-desc {
     color: #ccc; 
   }
-  .black-theme .form-control:focus {
+.modal .modal-content .modal-body .black-theme .form-control:focus {
     background-color: #000 !important; 
     color: #fff !important; 
     border-color: #666; 
     box-shadow: none;
   }
-  .black-theme .form-desc:hover,
-  .black-theme .form-desc:focus {
+.modal .modal-content .modal-body .black-theme .form-desc:hover,
+.modal .modal-content .modal-body .black-theme .form-desc:focus {
     color: #fff !important;
   }
-  .form-floating > label::after {
+.modal .modal-content .modal-body .form-floating > label::after {
     background-color: transparent !important;
 }
 .modal .modal-content .modal-footer{
@@ -307,9 +307,10 @@ text-wrap: nowrap;
     flex-direction: column;
     color: white;
 }
-.up-modal .up-modal-content .up-modal-body .up-d-grid{
+.up-modal .up-modal-content .up-modal-body .up-d-grid form{
     display: flex;
     flex-direction: column;
+    row-gap: 10px;
 }
 .up-modal .up-modal-content .up-modal-body button{
     background-color: white;
@@ -318,59 +319,65 @@ text-wrap: nowrap;
     font-weight: 650;
     border-radius: 20px; 
     font-size: medium;
-
 }
 .up-modal .up-modal-content .up-modal-body .up-px-3{
     color: white;
     font-size: 20px;
 }
-.black-theme .form-control {
+.up-modal .up-modal-content .up-modal-body .black-theme .form-control {
     background-color: #000; 
     color: #fff; 
     border: 1px solid #444; 
   }
 
-  .black-theme .form-control:focus {
+.up-modal .up-modal-content .up-modal-body .black-theme .form-control:focus {
     background-color: #000; 
     color: #fff; 
     border-color: #666; 
     box-shadow: none; 
   }
 
-  .black-theme .up-form-desc {
+.up-modal .up-modal-content .up-modal-body .black-theme .up-form-desc {
     color: #ccc; 
   }
-  .black-theme .form-control:focus {
+  .up-modal .up-modal-content .up-modal-body .black-theme .form-control:focus {
     background-color: #000 !important; 
     color: #fff !important; 
     border-color: #666; 
     box-shadow: none;
   }
-  .black-theme .up-form-desc:hover,
-  .black-theme .up-form-desc:focus {
+  .up-modal .up-modal-content .up-modal-body .black-theme .up-form-desc:hover,
+  .up-modal .up-modal-content .up-modal-body .black-theme .up-form-desc:focus {
     color: #fff !important;
   }
-  .form-floating > label::after {
+  .up-modal .up-modal-content .up-modal-body .form-floating > label::after {
     background-color: transparent !important;
 }
-.up-modal .up-modal-content .up-modal-footer{
+.up-modal .up-modal-content .up-modal-body .up-modal .up-modal-content .up-modal-footer{
     border-color: black;
     display: flex;
     flex-direction: row;
     justify-content: flex-start;
 }
+.up-modal .up-modal-content .up-modal-body .up-modal .up-modal-content .birth-date {
+    display: flex;
+    flex-direction: column;
+}
 .birth-date span{
 color: #666 !important;
 font-size: small;
 }
-.birth-day-container SELECT{
+.birth-date .text-danger{
+    color: red !important;
+}
+.up-modal .up-modal-content .up-modal-body SELECT{
     padding: 5px;
     color:white;
     background-color:black;
     border-color: #444;
     border-radius: 5px;
   }
-.birth-day-container input.date{
+  .up-modal .up-modal-content .up-modal-body input.date{
     width:50px;
     padding: 5px;
   }

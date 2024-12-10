@@ -17,6 +17,10 @@ public class UserService {
         return userDAO.listAll();
     }
 
+    public List <String> getAllEmails(){
+        return userDAO.listAllEmails();
+    }
+
     public void addUser(User user) {
         userDAO.insertUser(user);
     }
