@@ -1,4 +1,6 @@
-# Responsive LogIn/SignUp Page
+# Twitter/X
+
+## Responsive LogIn/SignUp Page
 
 ## Project Description
 This project features a **responsive LogIn/SignUp page** designed with modern web practices. It includes robust input validation, password encryption, and clean code architecture. The project is built to ensure user data security and deliver a seamless user experience across devices.
