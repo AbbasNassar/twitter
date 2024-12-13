@@ -25,6 +25,14 @@ public class UserService {
         userDAO.insertUser(user);
     }
 
+    public int getUserId(String email) {
+        return userDAO.getUserId(email);
+    }
+
+    public String checkPassword(String email) {
+        return userDAO.checkUserPassword(email);
+    }
+
     public void updateUser(User user) {
         userDAO.updateUser(user);
     }

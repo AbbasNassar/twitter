@@ -1,0 +1,16 @@
+<div class="birth-date" id="dateForm">
+                    <h3>Date of birth</h3>
+                    <span calss = "text-danger">
+                    {{ message }}
+                    </span>
+                    <span>
+                      This will not be shown publicly. Confirm your own age, even if this account is for a business, a pet, or something else.
+                    </span>
+                      <SELECT  id ="month" name = "mm" onchange="change_month(this)">
+                      </SELECT>
+                      <SELECT id ="day" name = "dd" >
+                      </SELECT>
+                      <SELECT id ="year" name = "yyyy" onchange="change_year(this)">
+                      </SELECT>
+                  </div>
+                  <script src="Js/birth-date.js"></script>

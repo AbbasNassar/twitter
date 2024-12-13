@@ -35,35 +35,35 @@
                 <span class="px-3">or</span>
                 <hr class="flex-grow-1 text-white">
             </div>
-            <button class="btn btn-primary create" type="button" hx-on:click="document.querySelector('#upModal').style.display='flex'">Create account</button>
+            <button class="btn btn-primary create" type="button" hx-on:click="document.querySelector('#upModal').style.display='flex';">Create account</button>
             <span class="info">By signing up, you agree to the <a href="#">Terms of Service</a> and <a href="#">Privacy Policy</a>, including <a href="#">Cookie Use</a>.</span>
             </div>
           </div>
           <div class="card-footer">
             <h3>Already have an account?</h3>
-            <button class="btn btn-primary sign-in" type="button" hx-on:click="document.querySelector('#modal').style.display='flex'">Sign In</button>
+            <button class="btn btn-primary sign-in" type="button" hx-on:click="document.querySelector('#modal').style.display='flex';">Sign In</button>
           </div>
         </div>
       </div>
     </div>
     <div class="footer">
         <div class="f-container">
-          <a href="#">About</a>
+          <a href="#" class="hide">About</a>
           <a href="#">Download the X app</a>
-          <a href="#">Help Center</a>
-          <a href="#">Terms of Service</a>
-          <a href="#">Privacy Policy</a>
-          <a href="#">Cookie Policy</a>
-          <a href="#">Accessibility</a>
-          <a href="#">Ads info</a>
-          <a href="#">Blog</a>
-          <a href="#">Careers</a>
-          <a href="#">Brand Resources</a>
-          <a href="#">Advertising</a>
-          <a href="#">Marketing</a>
-          <a href="#">X for Business</a>
-          <a href="#">Devolopers</a>
-          <a href="#">Directory</a>
+          <a href="#" class="hide">Help Center</a>
+          <a href="#" class="hide1">Terms of Service</a>
+          <a href="#" class="hide1">Privacy Policy</a>
+          <a href="#" class="hide1">Cookie Policy</a>
+          <a href="#" class="hide">Accessibility</a>
+          <a href="#" class="hide">Ads info</a>
+          <a href="#" class="hide">Blog</a>
+          <a href="#" class="hide">Careers</a>
+          <a href="#" class="hide">Brand Resources</a>
+          <a href="#" class="hide1">Advertising</a>
+          <a href="#" class="hide1">Marketing</a>
+          <a href="#" class="hide1">X for Business</a>
+          <a href="#" class="hide">Devolopers</a>
+          <a href="#" class="hide1">Directory</a>
           <a href="#">Settings</a>
           <div class = "certificate"><img src="/img/copyright-svgrepo-com.svg" alt="copyright"><div class="cert-text">X Corp 2024.</div></div>
         </div>
@@ -74,7 +74,7 @@
           <div class="modal-content">
            <div class="modal-styl">
             <div data-bs-theme="dark" class="close">
-              <button type="button" class="btn-close" aria-label="Close" hx-on:click="document.querySelector('#modal').style.display='none'"></button>
+              <button type="button" class="btn-close" aria-label="Close" hx-on:click="document.querySelector('#modal').style.display='none';"></button>
               </div>
             <img src="/img/X_logo.jpg" alt="X_logo" width="50vw" height="50vh">
            </div>
@@ -92,19 +92,32 @@
                     <span class="px-3">or</span>
                     <hr class="flex-grow-1 text-white">
                 </div>
-                <div class="form-floating mb-3 black-theme">
-                  <input type="email" class="form-control" id="floatingInput" placeholder="name@example.com">
-                  <label for="floatingInput" class="form-desc">Phone, email, or username</label>
-                </div>
-                <div class="form-floating mb-3 black-theme">
-                  <input type="password" class="form-control" id="floatingInput" placeholder="name@example.com">
-                  <label for="floatingInput" class="form-desc">Password</label>
-                </div>
-                <button class="btn btn-primary" type="button">Log In</button>
-                <button class="btn btn-primary" type="button">Forget password</button>
+                <form hx-post="/users" id="logInForm">
+                  <div class="form-floating mb-3 black-theme">
+                    <input type="email" class="form-control" id="floatingInput" placeholder="name@example.com" name="email">
+                    <label for="floatingInput" class="form-desc">Email</label>
+                  </div>
+                  <div class="form-floating mb-3 black-theme">
+                    <input type="password" class="form-control" id="floatingPassword" placeholder="Password" name="password">
+                    <label for="floatingPassword" class="form-desc">Password</label>
+                  </div>
+                  <button type="button" class="btn btn-secondary btn-sm" onclick="togglePasswordVisibility()">Show Password</button>
+                  <script>
+                    function togglePasswordVisibility() {
+                      const passwordInput = document.getElementById("floatingPassword");
+                      if (passwordInput.type === "password") {
+                        passwordInput.type = "text";
+                      } else {
+                        passwordInput.type = "password"; 
+                      }
+                    }
+                  </script>
+                  <button class="btn btn-primary" type="button" hx-post="/users/logInUser" hx-target="#logInForm" hx-swap="outerHTML">Log In</button>
+                  <button class="btn btn-primary" type="button">Forget password</button>
+                </form>
             </div>
             <div class="modal-footer">
-              <span>Don't have an account? <a href="#">Sign Up</a></span>
+              <span>Don't have an account? <a href="#" hx-on:click="document.querySelector('#modal').style.display='none'; document.querySelector('#upModal').style.display='flex';">Sign Up</a></span>
             </div>
             </div>
         </div>
@@ -116,7 +129,7 @@
         <div class="up-modal-content">
          <div class="up-modal-styl">
           <div data-bs-theme="dark" class="up-close">
-            <button type="button" class="btn-close" aria-label="Close" hx-on:click="document.querySelector('#upModal').style.display='none'"></button>
+            <button type="button" class="btn-close" aria-label="Close" hx-on:click="document.querySelector('#upModal').style.display='none';"></button>
             </div>
           <img src="/img/X_logo.jpg" alt="X_logo" width="50vw" height="50vh">
          </div>

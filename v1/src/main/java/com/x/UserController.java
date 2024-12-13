@@ -1,17 +1,26 @@
 package com.x;
 
+import java.io.IOException;
+import java.io.StringWriter;
+import java.io.Writer;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import java.util.HashMap;
 
 import com.google.inject.Inject;
+import com.mitchellbosecke.pebble.PebbleEngine;
+import com.mitchellbosecke.pebble.loader.ClasspathLoader;
+import com.mitchellbosecke.pebble.template.PebbleTemplate;
 
 import io.javalin.Javalin;
 import io.javalin.http.Context;
 
 public class UserController{
 
-    private final UserService userService;
+        private final UserService userService;
+        PebbleEngine engine = new PebbleEngine.Builder().loader(new ClasspathLoader()).build();
+
 
     @Inject
     public UserController(UserService userService) {
@@ -23,14 +32,26 @@ public class UserController{
         app.post("/users/email", this::HandleUsersEmail); // Returns partial HTML for user list
         app.post("/users/password", this::handlePasswordStrength);
         app.post("/users/addUser", this::addUser);
+        app.post("/users/logInUser", this::logInUser);
+        app.post("/user/{email}", this::renderUserPage);
+        app.get("/user/home",this::renderUserPage);
     }
 
     private void renderIndex(Context ctx) {
         // Render the main page template using Pebble
         ctx.render("templates/index.html");
     }
+    private void renderUserPage(Context ctx) throws IOException{
+        PebbleTemplate compiledTemplate = engine.getTemplate("templates/pebble/user.peb");
+        HashMap <String, Object> context = new HashMap<>();
+        Writer writer = new StringWriter();
+        context.put("title","Home");
+        compiledTemplate.evaluate(writer, context);
+        String output = writer.toString();
+        ctx.result(output).contentType("text/html");
+    }
 
-    private void HandleUsersEmail(Context ctx) {
+    private void HandleUsersEmail(Context ctx) throws IOException {
         String email = ctx.formParam("email");
         boolean isValidEmail = EmailHandler.isValidEmail(email);
         if (isValidEmail == true){
@@ -58,7 +79,7 @@ public class UserController{
             ctx.result(PasswordStrengthHandler.generatePasswordResponse("Password strength: " + strength, cssClass,password));
         }
     }
-    private void addUser(Context ctx){
+    private void addUser(Context ctx) throws IOException{
         String name = ctx.formParam("name");
         String email = ctx.formParam("email");
         String password = ctx.formParam("password");
@@ -92,22 +113,64 @@ public class UserController{
         }
         }
     }
-    private String generateInvalidDateResponse() {
-        return "<div class=\"birth-date\" id=\"dateForm\">" +
-               "  <h3>Date of birth</h3>" +
-               "  <span class=\"text-danger\">" +
-               "    Please enter a valid date. This will not be shown publicly. Confirm your own age, even if this account is for a business, a pet, or something else." +
-               "  </span>" +
-               "  <SELECT id=\"month\" name=\"mm\" onchange=\"change_month(this)\">" +
-               "    <!-- Options for months can be dynamically added here -->" +
-               "  </SELECT>" +
-               "  <SELECT id=\"day\" name=\"dd\">" +
-               "    <!-- Options for days can be dynamically added here -->" +
-               "  </SELECT>" +
-               "  <SELECT id=\"year\" name=\"yyyy\" onchange=\"change_year(this)\">" +
-               "    <!-- Options for years can be dynamically added here -->" +
-               "  </SELECT>" +
-               "</div>" +
-               "<script src=\"Js/birth-date.js\"></script>";
+    private void logInUser(Context ctx) throws IOException{
+        String email = ctx.formParam("email");
+        String password = ctx.formParam("password");
+        PebbleTemplate compiledTemplate = engine.getTemplate("templates/pebble/LogIn.peb");
+        HashMap <String, Object> context = new HashMap<>();
+        Writer writer = new StringWriter();
+        
+
+        if (email == null){
+            String response = """
+                <script>
+                    alert('Email field is empty!');
+                </script>
+            """;
+            ctx.result(response);
+        }
+        else if (password == null){
+            String response = """
+                <script>
+                    alert('Password field is empty!');
+                </script>
+            """;
+            ctx.result(response);
+        }
+        else{
+            boolean isEmailExists = EmailHandler.isEmailInList(email, userService.getAllEmails());
+            if (!isEmailExists){
+                context.put("errorMessage", "Email is not registered :(");
+                compiledTemplate.evaluate(writer, context);
+                String output = writer.toString();
+                ctx.result(output);
+            }
+            else{
+                String passwordFromDatabase = userService.checkPassword(email);
+                int userId = userService.getUserId(email);
+                if (PasswordUtils.verifyPassword(password, passwordFromDatabase)){
+                    // Add HX-Redirect header to navigate to the user's page
+                    ctx.header("HX-Redirect", "/user/home");
+                    ctx.status(200);
+                } 
+                 else {
+                    context.put("errorMessage", "Email or password is incorrect :(");
+                    context.put("email", email);
+                    context.put("password", password);
+                    compiledTemplate.evaluate(writer, context);
+                    String output = writer.toString();
+                    ctx.result(output);
+                }
+            }
+        }
+    }
+    private String generateInvalidDateResponse() throws IOException {
+        PebbleTemplate compiledTemplate = engine.getTemplate("templates/pebble/invalidDate.peb");
+        HashMap <String, Object> context = new HashMap<>();
+        Writer writer = new StringWriter();
+        context.put("message","Please enter a valid date.");
+        compiledTemplate.evaluate(writer, context);
+        String output = writer.toString();
+        return output;
     }
 }
