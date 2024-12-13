@@ -31,5 +31,3 @@ This project features a **responsive LogIn/SignUp page** designed with modern we
 ### 5. **HTMX and Pebble Templates**
 - Leverages **HTMX** for dynamic and asynchronous responses without full-page reloads.
 - Integrates **Pebble templates** for clean, server-side rendering and templating.
-
----
