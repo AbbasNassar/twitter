@@ -1,0 +1,1039 @@
+
+html, body {
+    margin: 0; 
+    padding: 0;
+  }
+body{
+   background-color: black;
+   display: flex;
+   flex-direction: row;
+   justify-content: center;
+   min-height: 100vh; 
+   box-sizing: border-box; 
+}
+body .h-container{
+    display: flex;
+    flex-direction: row;
+    width: 70%;
+}
+body .h-container .left{
+    position: sticky;
+    top:0px;
+    display: flex;
+    flex-direction: column;
+    align-self: flex-start;
+    row-gap: 200px;
+    width: 22%;
+    padding: 10px 30px 0px 0px;
+}
+body .h-container .left .leftHeader{
+    display: flex;
+    flex-direction: column;
+    row-gap: 10px;
+}
+body .h-container .left .leftHeader .logo svg{
+    width: 30px;
+    height: 30px;
+    margin-left: 10px;
+}
+body .h-container .left .leftHeader .navbar {
+    display: flex;
+    flex-direction: column; 
+    justify-content: flex-start; 
+    align-items: flex-start; 
+}
+body .h-container .left .leftHeader .navbar .navButton {
+    display: flex;
+    flex-direction: row; 
+    justify-content: flex-start; 
+    align-items: center; 
+    column-gap: 15px; 
+    height: 50px; 
+    width: fit-content; 
+    border-radius: 50px; 
+    background-color: black; 
+    border: none; 
+    padding: 0px 20px 0px 10px; 
+    color: white; 
+}
+body .h-container .left .leftHeader .navbar .navButton:hover{
+    background-color: #333; 
+}
+body .h-container .left .leftHeader .navbar .navButton svg{
+    height: 27px;
+    width: 27px;
+    fill: white;
+}
+body .h-container .left .leftHeader .navbar .navButton span{
+    font-size: 20px;
+    font-weight: 400;
+}
+body .h-container .left .leftHeader .postButton {
+    border-radius: 50px; 
+    border: none; 
+    color: black; 
+    background-color: white;
+    font-size: 20px;
+    font-weight: 700;
+    width: 90%;
+}
+body .h-container .left .leftHeader .postButton:hover{
+    background-color: #DCDCDC;
+}
+body .h-container .left .leftFooter{
+    margin-bottom: 20px;
+    position: relative;
+    bottom: 0px;
+}
+body .h-container .left .leftFooter .profile{
+  color:white;
+  background-color: black;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: none;
+  border-radius: 50px;
+  width: 90%;
+}
+body .h-container .left .leftFooter .profile:hover{
+    background-color: #333;
+}
+  
+body .h-container .left .leftFooter .profile .profile-img {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    margin-right: 10px;
+  }
+  
+body .h-container .left .leftFooter .profile .profile-details {
+    display: flex;
+    flex-direction: column;
+  }
+  
+body .h-container .left .leftFooter .profile .name {
+    font-weight: bold;
+    font-size: 16px;
+  }
+  
+body .h-container .left .leftFooter .profile .handle {
+    font-size: 14px;
+    color: #888;
+  }
+  
+body .h-container .left .leftFooter .profile .options {
+    margin-left: auto;
+    margin-bottom: 10px;
+    font-size: 20px;
+    color: white;
+    cursor: pointer;
+}
+body .h-container .left .leftFooter .profile-dropdown{
+    display: none; /* Initially hidden */
+    position: absolute;
+    bottom: 100%; /* Position it above the button */
+    left: 0;
+    background-color: #000;
+    border: 1px solid #333;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+    z-index: 1000;
+    width: 100%;
+    padding: 10px;
+}
+body .h-container .left .leftFooter .profile-dropdown::before{
+    content: "";
+    position: absolute;
+    bottom: -10px; /* Place the arrow below the dropdown */
+    left: 20px;
+    width: 10px;
+    height: 10px;
+    background-color: #000;
+    transform: rotate(45deg);
+}
+body .h-container .left .leftFooter .profile-dropdown ul{
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+body .h-container .left .leftFooter .profile-dropdown ul li{
+    margin: 5px 0;
+}
+body .h-container .left .leftFooter .profile-dropdown ul li a{
+    text-decoration: none;
+    color: white;
+    display: block;
+    padding: 5px;
+    border-radius: 5px;
+}
+body .h-container .left .leftFooter .profile-dropdown ul li a:hover{
+    background-color: #444;
+}
+body .h-container .middle{
+    display: flex;
+    flex-direction: column;
+    width: 48%;
+    height: fit-content;
+    border-left: 1px solid #333;
+    border-right: 1px solid #333;
+}
+body .h-container .middle .modalIndicator{
+    display: flex;
+    flex-direction: row;
+}
+body .h-container .middle .modalIndicator button{
+    border: none;
+    border-bottom: 1px solid #333;
+    width: 50%;
+    font-size: 16px;
+    background-color: #000; 
+    color: grey; 
+    box-sizing: border-box;
+    padding: 20px 30px;
+}
+body .h-container .middle .modalIndicator button:first-child{
+    font-weight: 800; 
+  color: white; 
+}
+body .h-container .middle .modalIndicator button:hover{
+    background-color: #333; 
+}
+body .h-container .middle .modalIndicator button.selected{
+  font-weight: 800; 
+  color: white; 
+}
+body .h-container .middle .createPost{
+    background-color: #000;
+    padding: 16px;
+    border-bottom: 1px solid #333;
+    color: white;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+body .h-container .middle .createPost .create-post-header{
+    display: flex;
+    gap: 10px;
+    align-items: flex-start;
+}
+body .h-container .middle .createPost .create-post-header #previewContainer{
+    max-width: 100px;
+    max-height: 100px;
+    object-fit: contain;
+}
+body .h-container .middle .createPost .create-post-header #previewContainer img{
+    max-width: 100px;
+    max-height: 100px;
+} 
+body .h-container .middle .createPost .create-post-header .profile-img{
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+body .h-container .middle .createPost .create-post-input{
+    flex: 1;
+    background: transparent;
+    border: none;
+    font-size: 16px;
+    color: white;
+    resize: none;
+    overflow: hidden; 
+    line-height: 1.5; 
+}
+body .h-container .middle .createPost .create-post-input:focus{
+    outline: none;
+}
+body .h-container .middle .createPost .create-post-footer{
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+body .h-container .middle .createPost .divider{
+    height: 1px;
+    background-color: #333;
+    margin: 5px 0;
+}
+body .h-container .middle .createPost .create-post-actions{
+    display: flex;
+    justify-content: space-between;
+    align-items: center; 
+}
+body .h-container .middle .createPost .post-icons{
+    display: flex;
+    gap: 10px;
+}
+body .h-container .middle .createPost .post-icons button{
+    background-color: black;
+    border: none;
+    width: 34px;
+    height: 34px;
+    display: flex;
+    justify-content: center;
+    align-items:center;
+}
+body .h-container .middle .createPost .post-icons button:hover{
+    border-radius: 50%;
+    background-color: rgb(15, 77, 120);
+}
+body .h-container .middle .createPost .post-icons button svg{
+    width: 24px;
+    height: 24px;
+    fill:rgb(29, 155, 240);
+}
+body .h-container .middle .createPost .post-btn{
+  background-color: #444;
+  color: white;
+  border: none;
+  border-radius: 20px;
+  padding: 8px 16px;
+  font-size: 16px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+body .h-container .middle .createPost .post-btn:hover{
+  background-color: #555;  
+}
+body .h-container .middle .createPost .post-btn:disabled{
+  background-color: #333;
+  cursor: not-allowed; 
+}
+body .h-container .middle .newsFeed {
+    width: 100%;
+}
+body .h-container .middle .newsFeed .twitter-post{
+    width: 100%;
+    background-color: black;
+    box-shadow: 0 0 8px rgba(0, 0, 0, 0.2);
+    display: flex;
+    flex-direction: column;
+    padding: 10px;
+    row-gap: 10px;
+    border-bottom: 1px solid #333;
+}
+body .h-container .middle .newsFeed .twitter-post:hover{
+    background-color: rgb(7, 7, 7);
+}
+body .h-container .middle .newsFeed .post-header{
+    position: relative;
+    display: flex;
+    flex-direction: row;
+    column-gap: 5px;
+    width: 100%;
+}
+body .h-container .middle .newsFeed .post-header .profile-pic{
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+}
+body .h-container .middle .newsFeed .post-header .user-info{
+    display: flex;
+    flex-direction: column;
+    margin: 0.5px 0px 0px 0.2%;
+}
+body .h-container .middle .newsFeed .post-header .user-info .userInfoGrouper{
+max-width: 600px;
+}
+body .h-container .middle .newsFeed .post-header .user-info .name{
+    font-size: 20px;
+    font-weight: bold;
+    color: #fff;
+}
+body .h-container .middle .newsFeed .post-header .user-info .username{
+    font-size: 16px;
+    color: #8899a6;
+}
+body .h-container .middle .newsFeed .post-header .user-info .textarea{
+    word-wrap: break-word;      
+    overflow-wrap: break-word;  
+    overflow: hidden;           
+    max-width: 600px;           
+    white-space: normal;        
+}
+body .h-container .middle .newsFeed .post-header .hashtag{
+    color: #1da1f2;
+    cursor: pointer;
+}
+body .h-container .middle .newsFeed .post-media{
+    max-width: 600px;
+    max-height: 600px;
+    margin-left: 35px;
+}
+body .h-container .middle .newsFeed .post-media img{
+    border-radius: 20px;
+    max-width: 100%; 
+    max-height: 100%; 
+    object-fit: contain; 
+}
+body .h-container .middle .newsFeed .post-metrics{
+    max-width: 600px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    font-size: 12px;
+    color: #8899a6;
+    margin-left: 55px;
+}
+body .h-container .middle .newsFeed .post-metrics span{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    height: 30px;
+    column-gap:2px;
+    
+}
+body .h-container .middle .newsFeed .post-metrics span svg{
+    width: 20px;
+    height: 20px;
+    fill: white;
+    border-radius: 50%;
+
+}
+body .h-container .middle .newsFeed .post-metrics span:hover svg{
+    border: 2px;
+    border-style: hidden;
+    border-radius: 50%;
+    border-color: #6d91a7 ;
+    fill: #09334d;
+}
+body .h-container .middle .newsFeed .post-metrics .love:hover svg{
+    border: 2px;
+    border-style: hidden;
+    border-radius: 50%;
+    border-color: #b17575 ;
+    fill: #770e0e;
+}
+body .h-container .middle .newsFeed .post-metrics span:hover{
+    color: #1da1f2;
+    cursor: pointer;
+}
+body .h-container .middle .newsFeed .post-metrics .love:hover{
+    color: #770e0e;
+    cursor: pointer;
+}
+body .h-container .right{
+    align-self: flex-start;
+    position: sticky;
+    top:0px;
+    width: 30%;
+    display:flex;
+    flex-direction: column;
+    row-gap: 20px;
+    padding: 10px 0px 0px 25px;
+}
+#previewContainer {
+    margin-top: 10px;
+  }
+  
+#previewContainer img {
+    max-width: 100%;
+    max-height: 200px;
+    border-radius: 10px;
+    border: 1px solid #333;
+    max-width: 100%; 
+    max-height: 100%; 
+    object-fit: contain; 
+  }
+.close-button {
+    position: absolute;
+    top: 5px;
+    right: 5px;
+    background: rgba(0, 0, 0, 0.7);
+    color: white;
+    border: none;
+    border-radius: 50%;
+    width: 20px;
+    height: 20px;
+    font-size: 14px;
+    text-align: center;
+    cursor: pointer;
+    line-height: 18px;
+  }
+  body .h-container .right .searchBar{
+    padding: 10px 20px;
+    background-color: #333;
+    border-radius: 50px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    column-gap: 5px;
+    width: 100%;
+  }
+  body .h-container .right .searchBar svg{
+    width: 24px;
+    height: 24px;
+    fill: grey;
+  }  
+body .h-container .right .searchBar input{
+    background-color: inherit;
+    border: none;
+    color: white;
+    width: 100%;
+}
+body .h-container .right .searchBar input:focus{
+    border:none;
+    outline: none;
+}
+body .h-container .right .clicked{
+    background-color: black !important;
+    border: 1px #1da1f2 solid;
+}
+body .h-container .right .clicked svg{
+    fill: #1da1f2;
+}
+/*================================================================================================================================================================================*/
+@media screen and (max-width:1550px){
+    body .h-container .left .leftHeader .navbar .navButton {
+        display: flex;
+        flex-direction: row; 
+        justify-content: flex-start; 
+        align-items: center; 
+        column-gap: 10px; 
+        height: 50px; 
+        width: fit-content; 
+        border-radius: 50px; 
+        background-color: black; 
+        border: none; 
+        padding: 0px 15px 0px 5px; 
+        color: white; 
+    }
+    body .h-container .left .leftHeader .navbar .navButton:hover{
+        background-color: #333; 
+    }
+    body .h-container .left .leftHeader .navbar .navButton svg{
+        height: 24px;
+        width: 24px;
+        fill: white;
+    }
+    body .h-container .left .leftHeader .navbar .navButton span{
+        font-size: 17px;
+        font-weight: 400;
+    }
+    body .h-container .left .leftHeader .postButton {
+        border-radius: 50px; 
+        border: none; 
+        color: black; 
+        background-color: white;
+        font-size: 17px;
+        font-weight: 700;
+        width: 90%;
+    }
+    body .h-container .left .leftFooter .profile{
+        width: 90%;
+    }
+    body .h-container .left .leftFooter .profile .profile-img {
+        width: 30px;
+        height: 30px;
+        border-radius: 50%;
+        margin-right: 5px;
+      }
+      
+    body .h-container .left .leftFooter .profile .profile-details {
+        display: flex;
+        flex-direction: column;
+      }
+      
+    body .h-container .left .leftFooter .profile .name {
+        font-weight: bold;
+        font-size: 13px;
+      }
+      
+    body .h-container .left .leftFooter .profile .handle {
+        font-size: 11px;
+        color: #888;
+      }
+      
+    body .h-container .left .leftFooter .profile .options {
+        margin-left: auto;
+        margin-bottom: 10px;
+        font-size: 20px;
+        color: white;
+        cursor: pointer;
+    }
+    body .h-container .left .leftFooter .profile-dropdown{
+        display: none; /* Initially hidden */
+        position: absolute;
+        bottom: 100%; /* Position it above the button */
+        left: 0;
+        background-color: #000;
+        border: 1px solid #333;
+        border-radius: 10px;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+        z-index: 1000;
+        width: 100%;
+        padding: 10px;
+        font-size: 12px;
+    }
+    body .h-container .left .leftFooter .profile-dropdown::before{
+        content: "";
+        position: absolute;
+        bottom: -10px; 
+        left: 20px;
+        width: 10px;
+        height: 10px;
+        background-color: #000;
+        transform: rotate(45deg);
+    }
+    body .h-container .left .leftFooter .profile-dropdown ul{
+        list-style: none;
+        margin: 0;
+        padding: 0;
+    }
+    body .h-container .left .leftFooter .profile-dropdown ul li{
+        margin: 5px 0;
+    }
+    body .h-container .left .leftFooter .profile-dropdown ul li a{
+        text-decoration: none;
+        color: white;
+        display: block;
+        padding: 5px;
+        border-radius: 5px;
+    }
+    body .h-container .left .leftFooter .profile-dropdown ul li a:hover{
+        background-color: #444;
+    }
+    body .h-container .right .searchBar svg{
+        width: 21px;
+        height: 21px;
+        fill: grey;
+      }  
+    body .h-container .right .searchBar input{
+        background-color: inherit;
+        border: none;
+        color: white;
+        width: 100%;
+        font-size: 14px;
+    }
+    body .h-container .middle .createPost .create-post-header .profile-img{
+        width: 30px;
+        height: 30px;
+        border-radius: 50%;
+        object-fit: cover;
+      }
+      body .h-container .middle .createPost .create-post-input{
+          flex: 1;
+          background: transparent;
+          border: none;
+          font-size: 14px;
+          color: white;
+          resize: none;
+          overflow: hidden; 
+          line-height: 1.5; 
+      }
+      body .h-container .middle .createPost .post-icons button{
+        background-color: black;
+        border: none;
+        width: 31px;
+        height: 31px;
+        display: flex;
+        justify-content: center;
+        align-items:center;
+    }
+    body .h-container .middle .createPost .post-icons button:hover{
+        border-radius: 50%;
+        background-color: rgb(15, 77, 120);
+    }
+    body .h-container .middle .createPost .post-icons button svg{
+        width: 21px;
+        height: 21px;
+        fill:rgb(29, 155, 240);
+    }
+    body .h-container .middle .createPost .post-btn{
+        background-color: #444;
+        color: white;
+        border: none;
+        border-radius: 20px;
+        padding: 8px 16px;
+        font-size: 14px;
+        font-weight: bold;
+        cursor: pointer;
+        transition: background-color 0.3s ease;
+      }
+    body .h-container .middle .newsFeed .post-header .profile-pic{
+        width: 30px;
+        height: 30px;
+        border-radius: 50%;
+    }
+    body .h-container .middle .newsFeed .post-header .user-info .name{
+        font-size: 14px;
+        font-weight: bold;
+        color: #fff;
+    }
+    body .h-container .middle .newsFeed .post-header .user-info .username{
+        font-size: 11px;
+        color: #8899a6;
+    }
+    body .h-container .middle .newsFeed .post-header .user-info .textarea{
+        font-size: 12px;
+    }
+    body .h-container .middle .newsFeed .post-metrics span svg{
+        width: 16px;
+        height: 16px;
+        fill: white;
+        border-radius: 50%;
+    
+    }
+    body .h-container .middle .newsFeed .post-metrics{
+        max-width: 600px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        font-size: 12px;
+        color: #8899a6;
+        margin-left: 35px;
+    }
+    body .h-container .left .leftHeader .logo svg{
+        width: 24px;
+        height: 24px;
+        margin-left: 5px;
+    }
+}
+/*+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++*/
+@media screen and (max-width:1141px){
+    body .h-container .left .leftFooter .profile {
+        display: flex;
+        justify-content: flex-start;
+    }
+    body .h-container .left .leftFooter .profile .profile-img {
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+      }
+    body .h-container .left .leftFooter .profile .profile-details {
+        display: none;
+      }
+    body .h-container .left .leftFooter .profile .options{
+        display:none;
+    }
+    body .h-container{
+        display: flex;
+        flex-direction: row;
+        width: 90%;
+    } 
+}
+@media screen and (max-width:794px){
+    body .h-container{
+        width:100%;
+        display: flex;
+        justify-content: flex-end;
+    }
+    body .h-container .left .leftHeader .navbar .navButton span{
+        display:none;
+    }
+    body .h-container .left .leftHeader .postButton {
+        display:none;
+    }
+    body .h-container .left{
+        width:7.5%;
+    }
+    body .h-container .middle{
+        width: 80%;
+    }
+    body .h-container .right{
+        padding: 0px;
+        display: flex;
+        flex-direction: row;
+        justify-content: flex-end;
+        width: 10%;
+    }
+    body .h-container .right .searchBar{
+        background-color: #333;
+        border-radius: 50px;
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: flex-end;
+        width: fit-content;
+      }
+      body .h-container .right .searchBar svg{
+        width: 24px;
+        height: 24px;
+        fill: grey;
+      }  
+    body .h-container .right .searchBar input{
+       display: none;
+    }
+    body .h-container .right .clicked{
+        background-color: black !important;
+        border: 1px #1da1f2 solid;
+    }
+    body .h-container .right .clicked svg{
+        fill: #1da1f2;
+    }
+}
+@media screen and (max-width:655px){
+    body .h-container {
+        display: block;
+        position: relative;
+        height: 100vh;
+      }
+    body .h-container .left{
+        position: fixed;
+        top:calc(100vh - 60px);
+        left: 0;
+        width: 100vw !important;
+        height: 100px;
+        padding: 0px;
+        z-index: 1;
+        background-color: black;
+      }
+    body .h-container .left .leftHeader{
+        display: flex;
+        flex-direction: row;
+        row-gap: 0px;
+        column-gap: 0px;
+        width: 100vw;
+        width: 500px;
+      }
+    body .h-container .left .leftHeader .hideForphone{
+        display: none !important;
+      }
+    body .h-container .left .leftHeader .logo{
+        display: none;
+      }
+    body .h-container .left .leftHeader .navbar{
+        display: flex;
+        flex-direction: row;
+        margin-left: 13%;
+        column-gap: 10px;
+      }
+      body .h-container .left .leftHeader .navbar .navButton{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        padding: 0px;
+      }
+    body .h-container .left .leftFooter{
+        position: fixed;
+        top:calc(100vh - 47.5px);
+        left: 1%;
+      }
+    body .h-container .middle{
+        width: 95vw !important;
+        position: fixed;
+        left: 2.5vw;
+      }
+    body .h-container .right{
+        height: fit-content;
+        width: fit-content;
+        position: fixed;
+        left: 60%;
+        top:calc(100vh - 50px);
+        z-index: 2;
+    }
+    body .h-container .right .searchBar input{
+        display: block;
+     }
+     body .h-container .right .clicked{
+         background-color: black !important;
+         border: 1px #1da1f2 solid;
+     }
+     body .h-container .right .clicked svg{
+         fill: #1da1f2;
+     }  
+     body .h-container .left .leftFooter .profile-dropdown{
+        display: none; /* Initially hidden */
+        position: absolute;
+        bottom: 100%; /* Position it above the button */
+        left: 0;
+        background-color: #000;
+        border: 1px solid #333;
+        border-radius: 10px;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+        z-index: 1000;
+        width: 200px;
+        padding: 10px;
+    }
+    body .h-container .left .leftFooter .profile-dropdown::before{
+        content: "";
+        position: absolute;
+        bottom: -10px; /* Place the arrow below the dropdown */
+        left: 20px;
+        width: 10px;
+        height: 10px;
+        background-color: #000;
+        transform: rotate(45deg);
+    }
+    body .h-container .left .leftFooter .profile-dropdown ul{
+        list-style: none;
+        margin: 0;
+        padding: 0;
+    }
+    body .h-container .left .leftFooter .profile-dropdown ul li{
+        margin: 5px 0;
+    }
+    body .h-container .left .leftFooter .profile-dropdown ul li a{
+        text-decoration: none;
+        color: white;
+        display: block;
+        padding: 5px;
+        border-radius: 5px;
+    }
+    body .h-container .left .leftFooter .profile-dropdown ul li a:hover{
+        background-color: #444;
+    }
+    body .h-container .middle .modalIndicator button{
+        border: none;
+        border-bottom: 1px solid #333;
+        width: 50%;
+        font-size: 16px;
+        background-color: #000; 
+        color: grey; 
+        box-sizing: border-box;
+        padding: 10px 20px;
+    }
+    body .h-container .middle .createPost{
+        background-color: #000;
+        padding: 10px;
+        border-bottom: 1px solid #333;
+        color: white;
+        display: flex;
+        flex-direction: column;
+        gap: 5px;
+    }
+    body .h-container .middle .createPost .create-post-header{
+        display: flex;
+        gap: 5px;
+        align-items: flex-start;
+    }
+    body .h-container .middle .createPost .create-post-header .profile-img{
+      width: 30px;
+      height: 30px;
+      border-radius: 50%;
+      object-fit: cover;
+    }
+    body .h-container .middle .createPost .create-post-input{
+        flex: 1;
+        background: transparent;
+        border: none;
+        font-size: 12px;
+        color: white;
+        resize: none;
+        overflow: hidden; 
+        line-height: 1.5; 
+    }
+    body .h-container .middle .createPost .create-post-input:focus{
+        outline: none;
+    }
+    body .h-container .middle .createPost .create-post-footer{
+        display: flex;
+        flex-direction: column;
+        gap: 5px;
+    }
+    body .h-container .middle .createPost .divider{
+        height: 1px;
+        background-color: #333;
+        margin: 5px 0;
+    }
+    body .h-container .middle .createPost .create-post-actions{
+        display: flex;
+        justify-content: space-between;
+        align-items: center; 
+    }
+    body .h-container .middle .createPost .post-icons{
+        display: flex;
+        gap: 5px;
+    }
+    body .h-container .middle .createPost .post-icons button{
+        background-color: black;
+        border: none;
+        width: 25px;
+        height: 25px;
+        display: flex;
+        justify-content: center;
+        align-items:center;
+    }
+    body .h-container .middle .createPost .post-icons button svg{
+        width: 20px;
+        height: 20px;
+        fill:rgb(29, 155, 240);
+    }
+    body .h-container .middle .createPost .post-btn{
+      background-color: #444;
+      color: white;
+      border: none;
+      border-radius: 20px;
+      padding: 4px 12px;
+      font-size: 12px;
+      font-weight: bold;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+    body .h-container .middle .newsFeed .twitter-post{
+        width: 100%;
+        background-color: black;
+        box-shadow: 0 0 8px rgba(0, 0, 0, 0.2);
+        display: flex;
+        flex-direction: column;
+        padding: 5px;
+        row-gap: 5px;
+        border-bottom: 1px solid #333;
+    }
+    body .h-container .middle .newsFeed .twitter-post:hover{
+        background-color: rgb(7, 7, 7);
+    }
+    body .h-container .middle .newsFeed .post-header{
+        position: relative;
+        display: flex;
+        flex-direction: row;
+        column-gap: 5px;
+        width: 100%;
+    }
+    body .h-container .middle .newsFeed .post-header .profile-pic{
+        width: 30px;
+        height: 30px;
+        border-radius: 50%;
+    }
+    body .h-container .middle .newsFeed .post-header .user-info{
+        display: flex;
+        flex-direction: column;
+        margin: 0px 0px 0px 0.2%;
+    }
+    body .h-container .middle .newsFeed .post-header .user-info .name{
+        font-size: 14px;
+        font-weight: bold;
+        color: #fff;
+    }
+    body .h-container .middle .newsFeed .post-header .user-info .username{
+        font-size: 12px;
+        color: #8899a6;
+    }
+    body .h-container .middle .newsFeed .post-media{
+        max-width: 600px;
+        max-height: 600px;
+        margin-left: 15px;
+    }
+    body .h-container .middle .newsFeed .post-media img{
+        border-radius: 20px;
+        max-width: 100%; 
+        max-height: 100%; 
+        object-fit: contain; 
+    }
+    body .h-container .middle .newsFeed .post-metrics{
+        max-width: 600px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        font-size: 8px;
+        color: #8899a6;
+        margin-left: 15px;
+    }
+    body .h-container .middle .newsFeed .post-metrics span{
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        align-items: center;
+        height: 30px;
+        column-gap:2px;
+        
+    }
+    body .h-container .middle .newsFeed .post-metrics span svg{
+        width: 12px;
+        height: 12px;
+        fill: white;
+        border-radius: 50%;
+    
+    }   
+}

@@ -18,8 +18,6 @@ public class App {
         String user = "root";
         String password = "123123";
 
-        FlywayMigration.migrateDatabase(url, user, password);
-
         // Create Guice injector
         Injector injector = Guice.createInjector(new UserModule());
 

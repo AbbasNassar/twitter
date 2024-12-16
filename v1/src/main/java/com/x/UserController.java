@@ -39,7 +39,7 @@ public class UserController{
 
     private void renderIndex(Context ctx) {
         // Render the main page template using Pebble
-        ctx.render("templates/index.html");
+        ctx.render("templates/home.html");
     }
     private void renderUserPage(Context ctx) throws IOException{
         PebbleTemplate compiledTemplate = engine.getTemplate("templates/pebble/user.peb");
