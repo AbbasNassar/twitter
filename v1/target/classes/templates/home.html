@@ -617,25 +617,104 @@
         <input type="search" name="search" placeholder="Search Users..." hx-post="/search"
           hx-trigger="input changed delay:500ms, search" hx-target="#search-results" hx-indicator=".htmx-indicator"
           id="dynamic-input" />
+          <div id="dropdownModal" class="dropdown-modal">
+            <ul id="searchResults">
+              <li>No recent searches</li>
+            </ul>
+          </div>
       </div>
       <script>
         const input = document.getElementById("dynamic-input");
         const target = document.getElementById("target");
-
-        // Add 'clicked' class when input is clicked (focused)
+        const dropdownModal = document.getElementById("dropdownModal");
+        const searchResults = document.getElementById("searchResults");
+  
+        // Show Dropdown Modal on Focus
         input.addEventListener("focus", () => {
           target.classList.add("clicked");
+          dropdownModal.style.display = "block";
         });
-
-        // Remove 'clicked' class when input loses focus
+  
+        // Hide Dropdown Modal on Blur
         input.addEventListener("blur", () => {
-          target.classList.remove("clicked");
+          setTimeout(() => {
+            target.classList.remove("clicked");
+            dropdownModal.style.display = "none";
+          }, 200);
         });
       </script>
       <div class="cards"></div>
       <div class="info"></div>
     </div>
   </div>
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+      const buttons = document.querySelectorAll(".navButton");
+      const homeButton = document.getElementById("homeButton");
+      const homePage = document.getElementById("hideWhenProfile");
+      const profilePage = document.getElementById("hideWhenHome");
+      const profileButton = document.getElementById("profileButtonShow"); 
+      const body = document.body;
+      const homeSelectedSvg = homeButton.querySelector("svg:nth-of-type(1)");
+      const hideSvg = homeButton.querySelector("svg:nth-of-type(2)");
+
+      homeSelectedSvg.id = `homeSelectedSvg-${Date.now()}`;
+      hideSvg.id = `hideSvg-${Date.now()}`;
+
+      homeSelectedSvg.style.display = "block";
+      hideSvg.style.display = "none";
+      const homeSpan = homeButton.querySelector("span");
+      if (homeSpan) {
+        homeSpan.style.fontWeight = "800";
+      }
+
+      function setBodyHeight(sizeDepends) {
+        if (sizeDepends) {
+          body.style.height = `${sizeDepends.offsetHeight}px`;
+        }
+      }
+
+      setBodyHeight(homePage);
+
+      window.addEventListener("resize", setBodyHeight);
+
+
+      buttons.forEach((button) => {
+        button.addEventListener("click", () => {
+
+          buttons.forEach((btn) => {
+            const span = btn.querySelector("span");
+            if (span) span.style.fontWeight = "400";
+          });
+
+          // Highlight the clicked button
+          const span = button.querySelector("span");
+          if (span) span.style.fontWeight = "800";
+
+          // Show/hide SVGs for the home button
+          if (button === homeButton) {
+            homeSelectedSvg.style.display = "block";
+            hideSvg.style.display = "none";
+            homePage.style.display = "flex";
+            profilePage.style.display = "none";
+            setBodyHeight(middleDiv);
+            window.addEventListener("resize", setBodyHeight);
+          } 
+          else if(button === profileButton){
+            homePage.style.display = "none";
+            profilePage.style.display = "flex";
+            setBodyHeight(profilePage);
+            window.addEventListener("resize", setBodyHeight);
+          }
+          else {
+
+            homeSelectedSvg.style.display = "none";
+            hideSvg.style.display = "block";
+          }
+        });
+      });
+    });
+  </script>
   <script>
     document.addEventListener("DOMContentLoaded", () => {
       const middleDiv = document.querySelector(".middle");
@@ -646,11 +725,7 @@
           body.style.height = `${middleDiv.offsetHeight}px`;
         }
       }
-
-      // Set body height initially
       setBodyHeight();
-
-      // Optionally, adjust body height on window resize
       window.addEventListener("resize", setBodyHeight);
     });
   </script>

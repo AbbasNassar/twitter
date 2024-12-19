@@ -7,7 +7,7 @@ import com.google.inject.AbstractModule;
 import com.google.inject.Provides;
 import com.google.inject.Singleton;
 // N-Tier Architecture Implementation -> Infrastructure Layer
-public class UserModule extends AbstractModule {
+public class PostModule extends AbstractModule {
     @Override
     protected void configure() {
         // Bind Jdbi instance
@@ -18,12 +18,12 @@ public class UserModule extends AbstractModule {
         bind(Jdbi.class).toInstance(jdbi);
 
         // Bind DAO
-        bind(UserService.class);
-        bind(UserController.class);
+        bind(PostService.class);
+        bind(PostController.class);
     }
     @Provides
     @Singleton
-    public UserDAO UserDao(Jdbi jdbi){
-        return jdbi.onDemand(UserDAO.class);
+    public PostDAO PostDao(Jdbi jdbi){
+        return jdbi.onDemand(PostDAO.class);
     }
 }

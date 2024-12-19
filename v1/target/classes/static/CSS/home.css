@@ -204,7 +204,7 @@ body .h-container .middle .modalIndicator button.selected{
 }
 body .h-container .middle .createPost{
     background-color: #000;
-    padding: 16px;
+    padding: 16px 16px 6px 16px;
     border-bottom: 1px solid #333;
     color: white;
     display: flex;
@@ -247,7 +247,7 @@ body .h-container .middle .createPost .create-post-input:focus{
 body .h-container .middle .createPost .create-post-footer{
     display: flex;
     flex-direction: column;
-    gap: 10px;
+    gap: 1px;
 }
 body .h-container .middle .createPost .divider{
     height: 1px;
@@ -358,7 +358,7 @@ body .h-container .middle .newsFeed .post-header .hashtag{
 body .h-container .middle .newsFeed .post-media{
     max-width: 600px;
     max-height: 600px;
-    margin-left: 35px;
+    margin-left: 55px;
 }
 body .h-container .middle .newsFeed .post-media img{
     border-radius: 20px;
@@ -413,6 +413,210 @@ body .h-container .middle .newsFeed .post-metrics .love:hover{
     color: #770e0e;
     cursor: pointer;
 }
+body .h-container .profilePageXo{
+    display: none;
+    flex-direction: column;
+    width: 48%;
+    height: fit-content;
+    border-left: 1px solid #333;
+    border-right: 1px solid #333;
+}
+body .h-container .profilePageXo .profileIndicator{
+    display:flex;
+    flex-direction: row;
+    column-gap: 10px;
+    justify-content: flex-start;
+    align-items: center;
+    height: 50px;
+}
+body .h-container .profilePageXo .profileIndicator .backButton{
+    padding: 7.5px;
+}
+body .h-container .profilePageXo .profileIndicator .backButton button{
+    background-color:inherit;
+    border: none;
+    height: 35px;
+    width: 35px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+body .h-container .profilePageXo .profileIndicator .backButton button:hover{
+    border-radius: 50%;
+    background-color: rgb(34, 34, 34);
+}
+body .h-container .profilePageXo .profileIndicator .backButton svg{
+    fill: white;
+    width: 24px;
+    height: 24px;
+}
+body .h-container .profilePageXo .profileIndicator .profileDetailsXo{
+    display:flex;
+    flex-direction: column;
+    color: white;
+}
+body .h-container .profilePageXo .profileIndicator .profileDetailsXo .profileName{
+    font-size: 18px;
+    font-weight: 800;
+}
+body .h-container .profilePageXo .profileIndicator .profileDetailsXo .numberOfPosts{
+    font-size: 12px;
+    color: darkgray;
+}
+body .h-container .profilePageXo .profileBanner{
+    height: 200px;
+    width: 100%;
+    background-color: #333;
+    position: relative;
+    top: 0px;
+}
+body .h-container .profilePageXo .profileBanner .profileLogo{
+    position: relative;
+    top:132.5px;
+    left: 15px;
+    
+}
+body .h-container .profilePageXo .profileBanner .profileLogo img{
+    width: 135px;
+    height: 135px;
+    border-radius: 50%;
+    object-fit: contain;
+    object-fit: cover; 
+    display: block; 
+    background-color: #f0f0f0; 
+    border: 4px solid black;
+}
+body .h-container .profilePageXo .profileProperties{
+    height: 300px;
+    display: flex;
+    flex-direction:column;
+    height: fit-content;
+}
+body .h-container .profilePageXo .profileProperties .profilePropertiesFr{
+    padding-top: 75px;
+    padding-left: 20px;
+    padding-bottom: 20px;
+    border-bottom: 1px solid #333;
+}
+body .h-container .profilePageXo .profileProperties .profilePropertiesFr h1{
+    color:white;
+    font-size: 22px;
+    font-weight: 800;
+}
+body .h-container .profilePageXo .profileProperties .profilePropertiesFr h2 , span{
+    font-size: 16px; 
+}
+body .h-container .profilePageXo  .twitter-post{
+    width: 100%;
+    background-color: black;
+    box-shadow: 0 0 8px rgba(0, 0, 0, 0.2);
+    display: flex;
+    flex-direction: column;
+    padding: 10px;
+    row-gap: 10px;
+    border-bottom: 1px solid #333;
+}
+body .h-container .profilePageXo .twitter-post:hover{
+    background-color: rgb(7, 7, 7);
+}
+body .h-container .profilePageXo .post-header{
+    position: relative;
+    display: flex;
+    flex-direction: row;
+    column-gap: 5px;
+    width: 100%;
+}
+body .h-container .profilePageXo  .post-header .profile-pic{
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+}
+body .h-container .profilePageXo .post-header .user-info{
+    display: flex;
+    flex-direction: column;
+    margin: 0.5px 0px 0px 0.2%;
+}
+body .h-container .profilePageXo .post-header .user-info .userInfoGrouper{
+max-width: 600px;
+}
+body .h-container .profilePageXo  .post-header .user-info .name{
+    font-size: 20px;
+    font-weight: bold;
+    color: #fff;
+}
+body .h-container .profilePageXo  .post-header .user-info .username{
+    font-size: 16px;
+    color: #8899a6;
+}
+body .h-container .profilePageXo .post-header .user-info .textarea{
+    word-wrap: break-word;      
+    overflow-wrap: break-word;  
+    overflow: hidden;           
+    max-width: 600px;           
+    white-space: normal;        
+}
+body .h-container .profilePageXo .post-header .hashtag{
+    color: #1da1f2;
+    cursor: pointer;
+}
+body .h-container .profilePageXo .post-media{
+    max-width: 600px;
+    max-height: 600px;
+    margin-left: 55px;
+}
+body .h-container .profilePageXo .post-media img{
+    border-radius: 20px;
+    max-width: 100%; 
+    max-height: 100%; 
+    object-fit: contain; 
+}
+body .h-container .profilePageXo .post-metrics{
+    max-width: 600px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    font-size: 12px;
+    color: #8899a6;
+    margin-left: 55px;
+}
+body .h-container .profilePageXo .post-metrics span{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    height: 30px;
+    column-gap:2px;
+    
+}
+body .h-container .profilePageXo .post-metrics span svg{
+    width: 20px;
+    height: 20px;
+    fill: white;
+    border-radius: 50%;
+
+}
+body .h-container .profilePageXo .post-metrics span:hover svg{
+    border: 2px;
+    border-style: hidden;
+    border-radius: 50%;
+    border-color: #6d91a7 ;
+    fill: #09334d;
+}
+body .h-container .profilePageXo  .post-metrics .love:hover svg{
+    border: 2px;
+    border-style: hidden;
+    border-radius: 50%;
+    border-color: #b17575 ;
+    fill: #770e0e;
+}
+body .h-container .profilePageXo .post-metrics span:hover{
+    color: #1da1f2;
+    cursor: pointer;
+}
+body .h-container .profilePageXo .post-metrics .love:hover{
+    color: #770e0e;
+    cursor: pointer;
+}  
 body .h-container .right{
     align-self: flex-start;
     position: sticky;
@@ -483,6 +687,42 @@ body .h-container .right .clicked{
 body .h-container .right .clicked svg{
     fill: #1da1f2;
 }
+
+  body .h-container .right  .dropdown-modal {
+    display: none;
+    position: absolute;
+    top: 57px;
+    left: 27px;
+    width: 95%;
+    background-color: #333;
+    border: 1px solid #444;
+    border-radius: 8px;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.3);
+    z-index: 1000;
+    padding: 10px 20px;
+  }
+
+  body .h-container .right  .dropdown-modal ul {
+    list-style: none;
+    margin: 0;
+    padding: 10px 0;
+  }
+
+  body .h-container .right  .dropdown-modal li {
+    padding: 8px 12px;
+    cursor: pointer;
+    color: #ccc;
+  }
+
+  body .h-container .right  .dropdown-modal li:hover {
+    background-color: #444;
+    color: #fff;
+  }
+
+ 
+  body .h-container .right  .searchBar.clicked {
+    box-shadow: 0 0 8px rgba(0, 128, 255, 0.7);
+  }
 /*================================================================================================================================================================================*/
 @media screen and (max-width:1550px){
     body .h-container .left .leftHeader .navbar .navButton {
@@ -675,6 +915,9 @@ body .h-container .right .clicked svg{
         border-radius: 50%;
     
     }
+    body .h-container .middle .newsFeed .post-media{
+        margin-left: 35px; 
+    }
     body .h-container .middle .newsFeed .post-metrics{
         max-width: 600px;
         display: flex;
@@ -711,7 +954,136 @@ body .h-container .right .clicked svg{
         display: flex;
         flex-direction: row;
         width: 90%;
-    } 
+    }
+    body .h-container .profilePageXo{
+        display: none;
+        flex-direction: column;
+        width: 48%;
+        height: fit-content;
+        border-left: 1px solid #333;
+        border-right: 1px solid #333;
+    }
+    body .h-container .profilePageXo .profileIndicator .profileDetailsXo .profileName{
+        font-size: 16px;
+        font-weight: 800;
+    }
+    body .h-container .profilePageXo .profileIndicator .profileDetailsXo .numberOfPosts{
+        font-size: 10px;
+        color: darkgray;
+    }
+    body .h-container .profilePageXo .profileBanner{
+        height: 200px;
+        width: 100%;
+        background-color: #333;
+        position: relative;
+        top: 0px;
+    }
+    body .h-container .profilePageXo .profileBanner .profileLogo{
+        position: relative;
+        top:150px;
+        left: 15px;
+        
+    }
+    body .h-container .profilePageXo .profileBanner .profileLogo img{
+        width: 100px;
+        height: 100px;
+        border-radius: 50%;
+        object-fit: contain;
+        object-fit: cover; 
+        display: block; 
+        background-color: #f0f0f0; 
+        border: 4px solid black;
+    }
+    body .h-container .profilePageXo .profileProperties{
+        height: 300px;
+        display: flex;
+        flex-direction:column;
+        height: fit-content;
+    }
+    body .h-container .profilePageXo .profileProperties .profilePropertiesFr{
+        padding-top: 75px;
+        padding-left: 20px;
+        padding-bottom: 20px;
+        border-bottom: 1px solid #333;
+    }
+    body .h-container .profilePageXo .profileProperties .profilePropertiesFr h1{
+        color:white;
+        font-size: 18px;
+        font-weight: 800;
+    }
+    body .h-container .profilePageXo .profileProperties .profilePropertiesFr h2 , span{
+        font-size: 12px; 
+    }
+    body .h-container .profilePageXo  .post-header .profile-pic{
+        width: 30px;
+        height: 30px;
+        border-radius: 50%;
+    }
+    body .h-container .profilePageXo .post-header .user-info{
+        display: flex;
+        flex-direction: column;
+        margin: 0.5px 0px 0px 0.2%;
+    }
+    body .h-container .profilePageXo .post-header .user-info .userInfoGrouper{
+    max-width: 600px;
+    }
+    body .h-container .profilePageXo  .post-header .user-info .name{
+        font-size: 16px;
+        font-weight: bold;
+        color: #fff;
+    }
+    body .h-container .profilePageXo  .post-header .user-info .username{
+        font-size: 10px;
+        color: #8899a6;
+    }
+    body .h-container .profilePageXo .post-header .user-info .textarea{
+        word-wrap: break-word;      
+        overflow-wrap: break-word;  
+        overflow: hidden;           
+        max-width: 600px;           
+        white-space: normal;   
+        font-size: 12px;     
+    }
+    body .h-container .profilePageXo .post-header .hashtag{
+        color: #1da1f2;
+        cursor: pointer;
+    }
+    body .h-container .profilePageXo .post-media{
+        max-width: 600px;
+        max-height: 600px;
+        margin-left: 35px;
+    }
+    body .h-container .profilePageXo .post-media img{
+        border-radius: 20px;
+        max-width: 100%; 
+        max-height: 100%; 
+        object-fit: contain; 
+    }
+    body .h-container .profilePageXo .post-metrics{
+        max-width: 600px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        font-size: 10px;
+        color: #8899a6;
+        margin-left: 35px;
+    }
+    body .h-container .profilePageXo .post-metrics span{
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        align-items: center;
+        height: 30px;
+        column-gap:2px;
+        
+    }
+    body .h-container .profilePageXo .post-metrics span svg{
+        width: 15px;
+        height: 15px;
+        fill: white;
+        border-radius: 50%;
+    
+    }
 }
 @media screen and (max-width:794px){
     body .h-container{
@@ -762,6 +1134,11 @@ body .h-container .right .clicked svg{
     body .h-container .right .clicked svg{
         fill: #1da1f2;
     }
+    body .h-container .profilePageXo{
+       
+        width: 80%;
+
+    }  
 }
 @media screen and (max-width:655px){
     body .h-container {
@@ -812,7 +1189,7 @@ body .h-container .right .clicked svg{
       }
     body .h-container .middle{
         width: 95vw !important;
-        position: fixed;
+        position: relative;
         left: 2.5vw;
       }
     body .h-container .right{
@@ -886,7 +1263,7 @@ body .h-container .right .clicked svg{
     }
     body .h-container .middle .createPost{
         background-color: #000;
-        padding: 10px;
+        padding: 10px 10px 6px 10px;
         border-bottom: 1px solid #333;
         color: white;
         display: flex;
@@ -920,7 +1297,7 @@ body .h-container .right .clicked svg{
     body .h-container .middle .createPost .create-post-footer{
         display: flex;
         flex-direction: column;
-        gap: 5px;
+        gap: 1px;
     }
     body .h-container .middle .createPost .divider{
         height: 1px;
@@ -1035,5 +1412,19 @@ body .h-container .right .clicked svg{
         fill: white;
         border-radius: 50%;
     
-    }   
+    }
+    body .h-container .right  .dropdown-modal {
+        display: none;
+        position: fixed;
+        top: 750px;
+        left: 50vw;
+        height: fit-content;
+        width: 50vw;
+        background-color: #333;
+        border: 1px solid #444;
+        border-radius: 8px;
+        box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.3);
+        z-index: 1000;
+        padding: 5px;
+      }   
 }

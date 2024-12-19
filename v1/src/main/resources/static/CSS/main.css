@@ -543,3 +543,25 @@ font-size: small;
         display: none !important;
     } 
    }
+   @media screen and (max-width:897px){
+    .header .h-container .logo{
+        display:none;
+    }
+    .header .h-container{
+        width: 100%;
+        display: flex;
+        justify-content: center;
+    }
+    .header .h-container .card{
+        width: fit-content;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+    .header .h-container .card .card-header, .card-body, .card-footer{
+        width: fit-content;
+        display: flex;
+        justify-content: center !important;
+        align-items: center !important;
+    }
+   }

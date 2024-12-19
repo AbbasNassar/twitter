@@ -39,16 +39,10 @@ public class UserController{
 
     private void renderIndex(Context ctx) {
         // Render the main page template using Pebble
-        ctx.render("templates/home.html");
+        ctx.render("templates/index.html");
     }
     private void renderUserPage(Context ctx) throws IOException{
-        PebbleTemplate compiledTemplate = engine.getTemplate("templates/pebble/user.peb");
-        HashMap <String, Object> context = new HashMap<>();
-        Writer writer = new StringWriter();
-        context.put("title","Home");
-        compiledTemplate.evaluate(writer, context);
-        String output = writer.toString();
-        ctx.result(output).contentType("text/html");
+        ctx.render("templates/home.html");
     }
 
     private void HandleUsersEmail(Context ctx) throws IOException {
@@ -96,8 +90,8 @@ public class UserController{
             month = "0" + month;    
         String birthDate = year + "-" + month + "-" + day;
         LocalDate dateOfBirth = LocalDate.parse(birthDate, DateTimeFormatter.ofPattern("yyyy-MM-dd"));
-        LocalDateTime CreatedAtTime = LocalDateTime.now();
-        User user = new User(name, email, password, dateOfBirth, CreatedAtTime,CreatedAtTime);
+        LocalDateTime editedAtTime = LocalDateTime.now();
+        User user = new User(name, email, password, dateOfBirth,editedAtTime);
         try {
             userService.addUser(user);
             String response = """

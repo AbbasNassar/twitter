@@ -9,23 +9,20 @@ public class User {
     private String email;
     private String password; 
     private LocalDate dateOfBirth; 
-    private LocalDateTime createdAt; 
+    private final LocalDateTime createdAt; 
     private LocalDateTime updatedAt; 
 
-    // Default Constructor
-    public User() {}
-
-    // Parameterized Constructor
-    public User(String name, String email, String password, LocalDate dateOfBirth, LocalDateTime createdAt, LocalDateTime updatedAt) {
+    
+    public User(String name, String email, String password, LocalDate dateOfBirth, LocalDateTime updatedAt) {
         this.name = name;
         this.email = email;
         this.password = PasswordUtils.encryptPassword(password);
         this.dateOfBirth = dateOfBirth;
-        this.createdAt = createdAt;
+        this.createdAt = LocalDateTime.now();
         this.updatedAt = updatedAt;
     }
 
-    // Getters and Setters
+    
     public int getId() {
         return id;
     }
@@ -65,10 +62,6 @@ public class User {
 
     public LocalDateTime getCreatedAt() {
         return createdAt;
-    }
-
-    public void setCreatedAt(LocalDateTime createdAt) {
-        this.createdAt = createdAt;
     }
 
     public LocalDateTime getUpdatedAt() {

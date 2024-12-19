@@ -12,6 +12,17 @@
     <input type="password" class="form-control" id="floatingInput" placeholder="Password" name="password" value="{{ password }}">
     <label for="floatingInput" class="form-desc">Password</label>
   </div>
+  <button type="button" class="btn btn-secondary btn-sm" onclick="togglePasswordVisibility()">Show Password</button>
+                  <script>
+                    function togglePasswordVisibility() {
+                      const passwordInput = document.getElementById("floatingPassword");
+                      if (passwordInput.type === "password") {
+                        passwordInput.type = "text";
+                      } else {
+                        passwordInput.type = "password"; 
+                      }
+                    }
+                  </script>
   <button class="btn btn-primary" type="button" hx-post="/users/logInUser" hx-target="#logInForm" hx-swap="outerHTML">Log In</button>
   <button class="btn btn-primary" type="button">Forget password</button>
 </form>
