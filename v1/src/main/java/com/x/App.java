@@ -27,7 +27,8 @@ public class App {
 
         Javalin app = Javalin.create(config -> {
         config.fileRenderer(new JavalinPebble(engine));
-        config.staticFiles.add("static");
+        config.staticFiles.add("/static");
+        
     });
         app.start(9090);
         controller.registerRoutes(app);

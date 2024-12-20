@@ -38,8 +38,6 @@ public class EmailHandler {
         context.put("invalidEmail", true);
         context.put("message", "Please enter a valid email address.");
         context.put("email", email);
-
-        System.out.println("Fuck");
         
         compiledTemplate.evaluate(writer, context);
         return writer.toString();

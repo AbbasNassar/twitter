@@ -13,10 +13,10 @@
       integrity="sha384-0895/pl2MU10Hqc6jd4RvrthNlDiE9U1tWmX7WRESftEDRosgxNsQG/Ze9YMRzHq"
       crossorigin="anonymous"
     ></script>
-    <link rel="stylesheet" href="../static/CSS/home.css" />
+    <link rel="stylesheet" href="/CSS/home.css" />
     <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
     <title>Home / X</title>
-    <link rel="icon" type="image/x-icon" href="../static/img/X_logo.jpg" />
+    <link rel="icon" type="image/x-icon" href="/img/X_logo.jpg" />
   </head>
 
   <body>
@@ -274,7 +274,7 @@
             />
             <div class="profile-details">
               <span class="name">{{ name }}</span>
-              <span class="handle">{{ username }}}</span>
+              <span class="handle">{{ username }}</span>
             </div>
             <div class="options">...</div>
           </button>
@@ -498,7 +498,7 @@
                   <!-- Media Section -->
                   <div class="post-media">
                     <img
-                      src="../static/img/benjamin-voros-phIFdC6lA4E-unsplash.jpg"
+                      src="/img/benjamin-voros-phIFdC6lA4E-unsplash.jpg"
                       alt="UFO Image"
                     />
                   </div>
@@ -581,7 +581,7 @@
                   <!-- Media Section -->
                   <div class="post-media">
                     <img
-                      src="../static/img/benjamin-voros-phIFdC6lA4E-unsplash.jpg"
+                      src="/img/benjamin-voros-phIFdC6lA4E-unsplash.jpg"
                       alt="UFO Image"
                     />
                   </div>
@@ -664,7 +664,7 @@
                   <!-- Media Section -->
                   <div class="post-media">
                     <img
-                      src="../static/img/benjamin-voros-phIFdC6lA4E-unsplash.jpg"
+                      src="/img/benjamin-voros-phIFdC6lA4E-unsplash.jpg"
                       alt="UFO Image"
                     />
                   </div>
@@ -747,7 +747,7 @@
                   <!-- Media Section -->
                   <div class="post-media">
                     <img
-                      src="../static/img/benjamin-voros-phIFdC6lA4E-unsplash.jpg"
+                      src="/img/benjamin-voros-phIFdC6lA4E-unsplash.jpg"
                       alt="UFO Image"
                     />
                   </div>

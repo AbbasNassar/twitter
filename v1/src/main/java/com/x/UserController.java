@@ -33,16 +33,30 @@ public class UserController{
         app.post("/users/password", this::handlePasswordStrength);
         app.post("/users/addUser", this::addUser);
         app.post("/users/logInUser", this::logInUser);
-        app.post("/user/{email}", this::renderUserPage);
         app.get("/user/home",this::renderUserPage);
     }
 
     private void renderIndex(Context ctx) {
-        // Render the main page template using Pebble
-        ctx.render("templates/index.html");
+       ctx.render("templates/index.html");
     }
     private void renderUserPage(Context ctx) throws IOException{
-        ctx.render("templates/home.html");
+        String email = ctx.sessionAttribute("userEmail");
+        User logedInUser = userService.getUser(email);       
+        String userName = logedInUser.getName();
+        String userUserName = logedInUser.getName() + "Xo";
+        PebbleTemplate compiledTemplate = engine.getTemplate("templates/pebble/home.peb");
+        HashMap<String, Object> context = new HashMap<>();
+        context.put("name", userName);
+        context.put("username", userUserName);
+        context.put("dateCreated", "27/12/2003");
+        context.put("numOfPosts", "1");
+        context.put("createDate", "27/12/2003");
+        context.put("textContent", "Hello");
+        context.put("profileImgSource", "img/X_logo.jpg");
+        Writer writer = new StringWriter();
+        compiledTemplate.evaluate(writer, context);
+        String output = writer.toString();
+        ctx.html(output);
     }
 
     private void HandleUsersEmail(Context ctx) throws IOException {
@@ -91,7 +105,7 @@ public class UserController{
         String birthDate = year + "-" + month + "-" + day;
         LocalDate dateOfBirth = LocalDate.parse(birthDate, DateTimeFormatter.ofPattern("yyyy-MM-dd"));
         LocalDateTime editedAtTime = LocalDateTime.now();
-        User user = new User(name, email, password, dateOfBirth,editedAtTime);
+        User user = new User(0,name, email, password, dateOfBirth, editedAtTime,editedAtTime);
         try {
             userService.addUser(user);
             String response = """
@@ -141,10 +155,10 @@ public class UserController{
             }
             else{
                 String passwordFromDatabase = userService.checkPassword(email);
-                int userId = userService.getUserId(email);
                 if (PasswordUtils.verifyPassword(password, passwordFromDatabase)){
-                    // Add HX-Redirect header to navigate to the user's page
+                    System.out.println(email);
                     ctx.header("HX-Redirect", "/user/home");
+                    ctx.sessionAttribute("userEmail", email);
                     ctx.status(200);
                 } 
                  else {

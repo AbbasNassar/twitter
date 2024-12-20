@@ -3,28 +3,45 @@ package com.x;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 
-public class User {
-    private int id;
-    private String name;
-    private String email;
-    private String password; 
-    private LocalDate dateOfBirth; 
-    private final LocalDateTime createdAt; 
-    private LocalDateTime updatedAt; 
+import org.jdbi.v3.core.mapper.reflect.ColumnName;
 
-    
-    public User(String name, String email, String password, LocalDate dateOfBirth, LocalDateTime updatedAt) {
+public class User {
+    @ColumnName("id")
+    private int id;
+    @ColumnName("name")
+    private String name;
+    @ColumnName("email")
+    private String email;
+    @ColumnName("password")
+    private String password;
+    @ColumnName("date_of_birth") 
+    private LocalDate date_of_birth;
+    @ColumnName("created_at") 
+    private LocalDateTime created_at;
+    @ColumnName("updated_at") 
+    private LocalDateTime updated_at; 
+
+    public User(){
+
+    }
+
+    public User(int id, String name, String email, String password, LocalDate dateOfBirth, LocalDateTime createdAt,LocalDateTime updatedAt) {
+        this.id = id;
         this.name = name;
         this.email = email;
-        this.password = PasswordUtils.encryptPassword(password);
-        this.dateOfBirth = dateOfBirth;
-        this.createdAt = LocalDateTime.now();
-        this.updatedAt = updatedAt;
+        this.password =password;
+        this.date_of_birth = dateOfBirth;
+        this.created_at = createdAt;
+        this.updated_at = updatedAt;
     }
 
     
     public int getId() {
         return id;
+    }
+    
+    public void setId(int id){
+        this.id = id;
     }
 
     public String getName() {
@@ -53,23 +70,27 @@ public class User {
     }
 
     public LocalDate getDateOfBirth() {
-        return dateOfBirth;
+        return date_of_birth;
     }
 
     public void setDateOfBirth(LocalDate dateOfBirth) {
-        this.dateOfBirth = dateOfBirth;
+        this.date_of_birth = dateOfBirth;
     }
 
     public LocalDateTime getCreatedAt() {
-        return createdAt;
+        return created_at;
+    }
+
+    public void setCreatedAt(LocalDateTime createdAt){
+        this.created_at = createdAt;
     }
 
     public LocalDateTime getUpdatedAt() {
-        return updatedAt;
+        return updated_at;
     }
 
     public void setUpdatedAt(LocalDateTime updatedAt) {
-        this.updatedAt = updatedAt;
+        this.updated_at = updatedAt;
     }
 
     // toString Method
@@ -80,9 +101,9 @@ public class User {
                 ", name='" + name + '\'' +
                 ", email='" + email + '\'' +
                 ", password='" + password + '\'' +
-                ", dateOfBirth=" + dateOfBirth +
-                ", createdAt=" + createdAt +
-                ", updatedAt=" + updatedAt +
+                ", dateOfBirth=" + date_of_birth +
+                ", createdAt=" + created_at +
+                ", updatedAt=" + updated_at +
                 '}';
     }
 }
