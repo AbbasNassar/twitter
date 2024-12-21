@@ -19,6 +19,9 @@ public interface UserDAO {
     @SqlQuery("SELECT id, name, email, password, date_of_birth, created_at, updated_at FROM users WHERE email = :email")
     User getUser(@Bind ("email") String email);
 
+    @SqlQuery("SELECT name FROM users WHERE id = :id")
+    String getUserName(@Bind ("id") int id);
+
     @SqlQuery("SELECT id FROM users WHERE email = :email")
     int getUserId(@Bind("email") String email); 
 

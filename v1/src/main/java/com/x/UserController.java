@@ -16,10 +16,12 @@ import com.mitchellbosecke.pebble.template.PebbleTemplate;
 import io.javalin.Javalin;
 import io.javalin.http.Context;
 
-public class UserController{
 
-        private final UserService userService;
-        PebbleEngine engine = new PebbleEngine.Builder().loader(new ClasspathLoader()).build();
+public class UserController{
+   
+
+    private static UserService userService;
+    PebbleEngine engine = new PebbleEngine.Builder().loader(new ClasspathLoader()).build();
 
 
     @Inject
@@ -48,11 +50,8 @@ public class UserController{
         HashMap<String, Object> context = new HashMap<>();
         context.put("name", userName);
         context.put("username", userUserName);
-        context.put("dateCreated", "27/12/2003");
-        context.put("numOfPosts", "1");
-        context.put("createDate", "27/12/2003");
-        context.put("textContent", "Hello");
-        context.put("profileImgSource", "img/X_logo.jpg");
+        context.put("userEmail", email);
+        context.put("ProfileImgSource", "/img/X_logo.jpg");
         Writer writer = new StringWriter();
         compiledTemplate.evaluate(writer, context);
         String output = writer.toString();
@@ -180,5 +179,13 @@ public class UserController{
         compiledTemplate.evaluate(writer, context);
         String output = writer.toString();
         return output;
+    }
+    public static int getUserId(String email){
+        int id = userService.getUserId(email);
+        return id;
+    }
+    public static String getUserName(int id){
+        String name = userService.getUserName(id);
+        return name;
     }
 }

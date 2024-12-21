@@ -14,15 +14,15 @@ import io.javalin.rendering.template.JavalinPebble;
 
 public class App {
     public static void main(String[] args) throws IOException {
-        String url = "jdbc:mysql://localhost:3306/twitter";
-        String user = "root";
-        String password = "123123";
 
         // Create Guice injector
         Injector injector = Guice.createInjector(new UserModule());
 
         // Get TodoController from Guice
         UserController controller = injector.getInstance(UserController.class);
+        Injector postInjector = Guice.createInjector(new PostModule());
+
+        PostController postController = postInjector.getInstance(PostController.class);
         PebbleEngine engine = new PebbleEngine.Builder().loader(new ClasspathLoader()).build();
 
         Javalin app = Javalin.create(config -> {
@@ -32,6 +32,7 @@ public class App {
     });
         app.start(9090);
         controller.registerRoutes(app);
+        postController.registerRoutes(app);
 
     }
 }

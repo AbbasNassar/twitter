@@ -211,25 +211,10 @@ body .h-container .middle .createPost{
     flex-direction: column;
     gap: 10px;
 }
-body .h-container .middle .createPost .create-post-header{
+body .h-container .middle .createPost form{
     display: flex;
     gap: 10px;
     align-items: flex-start;
-}
-body .h-container .middle .createPost .create-post-header #previewContainer{
-    max-width: 100px;
-    max-height: 100px;
-    object-fit: contain;
-}
-body .h-container .middle .createPost .create-post-header #previewContainer img{
-    max-width: 100px;
-    max-height: 100px;
-} 
-body .h-container .middle .createPost .create-post-header .profile-img{
-  width: 50px;
-  height: 50px;
-  border-radius: 50%;
-  object-fit: cover;
 }
 body .h-container .middle .createPost .create-post-input{
     flex: 1;
@@ -349,7 +334,8 @@ body .h-container .middle .newsFeed .post-header .user-info .textarea{
     overflow-wrap: break-word;  
     overflow: hidden;           
     max-width: 600px;           
-    white-space: normal;        
+    white-space: normal;  
+    color: white !important;      
 }
 body .h-container .middle .newsFeed .post-header .hashtag{
     color: #1da1f2;
@@ -907,6 +893,7 @@ body .h-container .right .clicked svg{
     }
     body .h-container .middle .newsFeed .post-header .user-info .textarea{
         font-size: 12px;
+        color: white !important;
     }
     body .h-container .middle .newsFeed .post-metrics span svg{
         width: 16px;
@@ -1376,6 +1363,9 @@ body .h-container .right .clicked svg{
     body .h-container .middle .newsFeed .post-header .user-info .username{
         font-size: 12px;
         color: #8899a6;
+    }
+    body .h-container .middle .newsFeed .post-header .user-info .textarea{
+        color: white !important;
     }
     body .h-container .middle .newsFeed .post-media{
         max-width: 600px;

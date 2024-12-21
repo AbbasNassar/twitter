@@ -15,11 +15,11 @@ public class PostService {
     public List<Post> getAllPosts() {
         return postDAO.getAllPosts();
     }
-    public void addUser(Post post) {
+    public void addPost(Post post) {
         postDAO.insertPost(post);
     }
 
-    public void deleteUser(String id) {
+    public void deletePost(String id) {
         postDAO.deletePost(id);
     }
 

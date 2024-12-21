@@ -4,7 +4,6 @@ import java.util.List;
 
 import com.google.inject.Inject;
 
-// N-Tier Architecture Implementation -> Data Access Layer
 public class UserService {
     private final UserDAO userDAO;
 
@@ -18,6 +17,10 @@ public class UserService {
     }
     public User getUser(String email){
         return userDAO.getUser(email);
+    }
+
+    public String getUserName(int id){
+        return userDAO.getUserName(id);
     }
 
     public List <String> getAllEmails(){
