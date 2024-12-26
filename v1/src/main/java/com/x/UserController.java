@@ -60,7 +60,6 @@ public class UserController{
         ctx.html(output);
     }
     private void searchUsers(Context ctx) throws IOException{
-        System.out.println("hello");
         String name = ctx.formParam("search");
         if (name != null){
             if (name.isEmpty() != true){

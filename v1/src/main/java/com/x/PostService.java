@@ -21,5 +21,8 @@ public class PostService {
     public List<Post> getUserPost(int Id){
         return postDAO.getUserPosts(Id);
     }
-
+    public Post getPost(int id){
+        return postDAO.getPost(id);
+    }
+        
 }

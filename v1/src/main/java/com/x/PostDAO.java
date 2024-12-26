@@ -13,11 +13,15 @@ public interface PostDAO {
     @SqlQuery("SELECT * FROM posts")
     List<Post> getAllPosts();
 
-    @SqlUpdate("INSERT INTO posts (user_id, content, created_at, updated_at) VALUES (:post.userId, :post.content, :post.createdAt, :post.updatedAt)")
+    @SqlUpdate("INSERT INTO posts (user_id, content, created_at, updated_at, retweet_id) VALUES (:post.userId, :post.content, :post.createdAt, :post.updatedAt, :post.retweetId)")
     void insertPost(@BindBean("post") Post post);
 
     @RegisterBeanMapper(Post.class)
-    @SqlQuery("SELECT id ,user_id, content, created_at, updated_at FROM posts where user_id=:userId or retweet_id=:userId")
+    @SqlQuery("SELECT id ,user_id, content, created_at, updated_at, retweet_id FROM posts where user_id=:userId")
     List<Post> getUserPosts(@Bind ("userId") int userId);
+
+    @RegisterBeanMapper(Post.class)
+    @SqlQuery("SELECT id ,user_id, content, created_at, updated_at, retweet_id FROM posts where id=:postId")
+    Post getPost(@Bind ("postId") int postId);
 
 }

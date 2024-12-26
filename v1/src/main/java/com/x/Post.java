@@ -15,17 +15,21 @@ public class Post {
     private LocalDateTime createdAt;
     @ColumnName("updated_at")
     private LocalDateTime updatedAt;
+    @ColumnName("retweet_id")
+    private int retweetId;
 
     public Post(){
 
     }
 
-    public Post(int id, int userId, String content, LocalDateTime createdAt, LocalDateTime updatedAt) {
+    public Post(int id, int userId, String content, LocalDateTime createdAt, LocalDateTime updatedAt, int retweetId) {
         this.userId = userId;
         this.content = content;
         this.createdAt = createdAt;
         this.updatedAt = updatedAt;
+        this.retweetId = retweetId;
     }
+    
 
     public int getId() {
         return id;
@@ -66,4 +70,21 @@ public class Post {
     public void setUpdatedAt(LocalDateTime updatedAt) {
         this.updatedAt = updatedAt;
     }
+    public int getRetweetId (){
+        return this.retweetId;
+    }
+    public void setRetweetId(int retweetId){
+        this.retweetId = retweetId;
+    }
+    @Override
+    public String toString() {
+    return "Post{" +
+            "id=" + id +
+            ", userId=" + userId +
+            ", content='" + content + '\'' +
+            ", createdAt=" + createdAt +
+            ", updatedAt=" + updatedAt +
+            ", retweetId=" + retweetId +
+            '}';
+}
 }

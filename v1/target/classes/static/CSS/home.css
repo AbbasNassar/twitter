@@ -333,7 +333,7 @@ body .h-container .middle .newsFeed .post-header .user-info .userInfoGrouper .us
     font-size: 16px;
     color: #8899a6;
 }
-body .h-container .middle .newsFeed .post-header .user-info .userInfoGrouper .textarea{
+body .h-container .middle .newsFeed .post-header .user-info .textarea{
     word-wrap: break-word;      
     overflow-wrap: break-word;  
     overflow: hidden;           

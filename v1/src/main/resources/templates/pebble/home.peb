@@ -325,7 +325,7 @@
         <div class="createPost">
           <form id="postForm" hx-post="/post/create" hx-target="#newsFeed" hx-swap="innerHTML">
             <span>{{name}}</span>
-            <input type="hidden" name="userEmail" value="{{ userEmail }}" />
+            <input id="emailProvider" type="hidden" name="userEmail" value="{{ userEmail }}" />
             <textarea
               id = "postContent"
               class="create-post-input"

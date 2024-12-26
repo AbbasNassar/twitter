@@ -31,8 +31,21 @@ public class PostController {
         app.get("/fetchPosts", this::fetchAllPosts);
         app.post("/post/create", this::createPost);
         app.get("/fetchUserPosts", this::fetchUserPosts);
+        app.post("repost", this::repostPost);
     }
 
+    private void repostPost(Context ctx){
+        String id = ctx.formParam("postId");
+        String viewerEmail = ctx.formParam("userEmail"); 
+        int viewerId = UserController.getUserId(viewerEmail);
+        int idInt = Integer.parseInt(id);
+        Post originPost = postService.getPost(idInt);
+        if (viewerId != originPost.getUserId()){
+            Post referencePost = new Post(0, viewerId, originPost.getContent(), originPost.getCreatedAt(), originPost.getUpdatedAt(), originPost.getUserId());
+            postService.addPost(referencePost);
+            
+        }
+    }
     private void fetchAllPosts(Context ctx) throws IOException {
 
         List<Post> allPosts = postService.getAllPosts();
@@ -45,22 +58,31 @@ public class PostController {
             PebbleTemplate compiledTemplate = engine.getTemplate("templates/pebble/post.peb");
             Writer writer = new StringWriter();
             HashMap<String, Object> context = new HashMap<>();
-            context.put("name", name);
-            context.put("username", name + "Xo");
-            context.put("createDate", firstChild.getCreatedAt().toString());
-            context.put("textContent", firstChild.getContent());
-            compiledTemplate.evaluate(writer, context);
+            if (firstChild.getRetweetId() == -1){
+                context.put("postId",firstChild.getId());
+                context.put("userId", firstChild.getUserId());
+                context.put("name", name);
+                context.put("username", name + "Xo");
+                context.put("createDate", firstChild.getCreatedAt().toString());
+                context.put("textContent", firstChild.getContent());
+                compiledTemplate.evaluate(writer, context);
+                
+            }
             String output = writer.toString();
             if (allPosts.size() > 1){
                 for (int i =1; i<sortedAllPosts.size(); i++){
                     Post p = sortedAllPosts.get(i);
-                    String nameUser = UserController.getUserName(p.getUserId());
-                    context.put("name", nameUser);
-                    context.put("username", nameUser + "Xo");
-                    context.put("createDate", p.getCreatedAt().toString());
-                    context.put("textContent", p.getContent());
-                    compiledTemplate.evaluate(writer, context);
-                    output = writer.toString();
+                    if (p.getRetweetId() == -1){
+                        String nameUser = UserController.getUserName(p.getUserId());
+                        context.put("postId",p.getId());
+                        context.put("userId", p.getUserId());
+                        context.put("name", nameUser);
+                        context.put("username", nameUser + "Xo");
+                        context.put("createDate", p.getCreatedAt().toString());
+                        context.put("textContent", p.getContent());
+                        compiledTemplate.evaluate(writer, context);
+                        output = writer.toString();
+                    }
                 }
             }
             ctx.result(output);
@@ -75,7 +97,7 @@ public class PostController {
             if (postContent.isEmpty() != true){
                 int userId = UserController.getUserId(userEmail);
                 LocalDateTime createTime = LocalDateTime.now();
-                Post post = new Post(0, userId, postContent, createTime,createTime);
+                Post post = new Post(0, userId, postContent, createTime,createTime, -1);
                 postService.addPost(post);
             }
         }
@@ -95,7 +117,13 @@ public class PostController {
         HashMap<String, Object> context = new HashMap<>();
         String output = "";
         for (Post p : sortedUserPosts){
-            String name = UserController.getUserName(p.getUserId());
+            String name;
+            if (p.getRetweetId() == -1){
+                name = UserController.getUserName(p.getUserId());
+            }
+            else{
+                name = UserController.getUserName(p.getRetweetId());
+            }
             context.put("name", name);
             context.put("username", name + "Xo");
             context.put("createDate", p.getCreatedAt().toString());
