@@ -1,4 +1,4 @@
-<div class="twitter-post">
+<div class="twitter-post" id="post {{ postId }}">
                   <!-- Header Section -->
                   <div class="post-header">
                     <img
@@ -8,7 +8,7 @@
                     />
                     <div class="user-info">
                       <div class="userInfoGrouper">
-                        <span class="name">{{ name }}</span>
+                        <span class="name" hx-get="/user/profile">{{ name }}</span>
                         <span class="username"
                           >@{{ username }} · {{ createDate }}</span
                         >
@@ -40,8 +40,9 @@
                         </g></svg
                       >180</span
                     >
-                    <span
-                      ><svg
+                    <span>
+                    
+                    <svg
                         viewBox="0 0 24 24"
                         aria-hidden="true"
                         class="r-4qtqp9 r-yyyyoo r-dnmrzs r-bnwqim r-lrvibr r-m6rgpd r-1xvli5t r-1hdv0qi"

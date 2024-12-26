@@ -19,6 +19,10 @@ public interface UserDAO {
     @SqlQuery("SELECT id, name, email, password, date_of_birth, created_at, updated_at FROM users WHERE email = :email")
     User getUser(@Bind ("email") String email);
 
+    @RegisterBeanMapper(User.class)
+    @SqlQuery("SELECT id, name, email, password, date_of_birth, created_at, updated_at FROM users WHERE name like :name")
+    List <User> getSearchedUsers(@Bind ("name") String name);
+
     @SqlQuery("SELECT name FROM users WHERE id = :id")
     String getUserName(@Bind ("id") int id);
 

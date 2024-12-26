@@ -198,7 +198,7 @@
               </svg>
               <span>Settings</span>
             </button>
-            <button class="btn btn-primary navButton" type="button">
+            <button class="btn btn-primary navButton" type="button" id="profileButtonShow">
               <svg
                 viewBox="0 0 24 24"
                 aria-hidden="true"
@@ -298,7 +298,7 @@
           });
         </script>
       </div>
-      <div class="middle" hx-trigger="load">
+      <div class="middle" id="hideWhenProfile" hx-trigger="load">
         <div class="modalIndicator">
           <button type="button">For you</button>
           <button type="button">Following</button>
@@ -360,6 +360,44 @@
           </table>
         </div>
       </div>
+       <div class="profilePageXo" id="hideWhenHome">
+        <!-- Profile Indicator -->
+        <div class="profileIndicator">
+          <div class="backButton">
+            <button>
+              <svg viewBox="0 0 24 24" aria-hidden="true" class="r-4qtqp9 r-yyyyoo r-dnmrzs r-bnwqim r-lrvibr r-m6rgpd r-z80fyv r-19wmn03" style="color: rgb(239, 243, 244);"><g><path d="M7.414 13l5.043 5.04-1.414 1.42L3.586 12l7.457-7.46 1.414 1.42L7.414 11H21v2H7.414z"></path></g></svg>
+            </button>
+          </div>
+          <div class="profileDetailsXo">
+            <div class="profileName"> {{ name }} </div>
+            <div class="numberOfPosts"> {{ numberOfPosts }}</div>
+          </div>
+        </div>
+  
+        <!-- Profile Banner -->
+        <div class="profileBanner">
+          <div class="profileLogo">
+            <img src= {{ProfileImgSource}} alt="Profile Logo" />
+          </div>
+        </div>
+  
+        <!-- Profile Properties -->
+        <div class="profileProperties">
+          <div class="profilePropertiesFr">
+            <h1>{{name}}</h1>
+            <h2>@{{username}}</h2>
+            <span> Hello There, Take a look at my profile.</span>
+          </div>
+        </div>
+        <div class="userPostFeed" hx-get="/fetchUserPosts" hx-trigger="load" hx-target="#userPostFeed" hx-swap="innerHTML" hx-include="[name='userEmail']">
+        <input type="hidden" name="userEmail" value="{{ userEmail }}" />
+          <table>
+            <tbody id="userPostFeed">
+             
+            </tbody>
+          </table>
+        </div>
+      </div>
       <div class="right">
         <div class="searchBar" id="target">
           <svg
@@ -377,14 +415,15 @@
             type="search"
             name="search"
             placeholder="Search Users..."
-            hx-post="/search"
+            hx-post="/users/search"
             hx-trigger="input changed delay:500ms, search"
-            hx-target="#search-results"
+            hx-target="#searchResults"
+            hx-swap="innerHTML"
             hx-indicator=".htmx-indicator"
             id="dynamic-input"
           />
           <div id="dropdownModal" class="dropdown-modal">
-            <ul id="searchResults">
+            <ul id="searchResults" class="resultForSearch">
               <li>No recent searches</li>
             </ul>
           </div>
@@ -409,8 +448,6 @@
             }, 200);
           });
         </script>
-        <div class="cards"></div>
-        <div class="info"></div>
       </div>
     </div>
     <script>

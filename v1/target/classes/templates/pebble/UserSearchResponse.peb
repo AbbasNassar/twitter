@@ -1,0 +1,11 @@
+<button class="profile">
+            <img
+              src="{{ ProfileImgSource }}"
+              alt="profileImage"
+              class="profile-img"
+            />
+            <div class="profile-details">
+              <span class="name">{{ name }}</span>
+              <span class="handle">{{ username }}</span>
+            </div>
+</button>

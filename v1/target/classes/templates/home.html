@@ -210,7 +210,7 @@
                   ></path>
                 </g>
               </svg>
-              <span>Profile</span>
+              <span id="profileButtonShow">Profile</span>
             </button>
             <script>
               document.addEventListener("DOMContentLoaded", () => {
@@ -274,7 +274,7 @@
             />
             <div class="profile-details">
               <span class="name">{{ name }}</span>
-              <span class="handle">{{ username }}}</span>
+              <span class="handle">{{ username }}</span>
             </div>
             <div class="options">...</div>
           </button>
@@ -817,6 +817,36 @@
               </tr>
             </thead>
           </table>
+        </div>
+      </div>
+      <div class="profilePageXo" id="hideWhenHome">
+        <!-- Profile Indicator -->
+        <div class="profileIndicator">
+          <div class="backButton">
+            <button>
+              <svg><!-- SVG content here --></svg>
+            </button>
+          </div>
+          <div class="profileDetailsXo">
+            <div class="profileName">Profile Name</div>
+            <div class="numberOfPosts">Number of posts</div>
+          </div>
+        </div>
+  
+        <!-- Profile Banner -->
+        <div class="profileBanner">
+          <div class="profileLogo">
+            <img src="profile-image.jpg" alt="Profile Logo" />
+          </div>
+        </div>
+  
+        <!-- Profile Properties -->
+        <div class="profileProperties">
+          <div class="profilePropertiesFr">
+            <h1>Heading 1</h1>
+            <h2>Heading 2</h2>
+            <span>Additional Text</span>
+          </div>
         </div>
       </div>
       <div class="right">

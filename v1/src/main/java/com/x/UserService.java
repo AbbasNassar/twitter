@@ -18,7 +18,10 @@ public class UserService {
     public User getUser(String email){
         return userDAO.getUser(email);
     }
-
+    public List <User> getSearchedUsers(String name){
+        return userDAO.getSearchedUsers(name);
+    }
+    
     public String getUserName(int id){
         return userDAO.getUserName(id);
     }

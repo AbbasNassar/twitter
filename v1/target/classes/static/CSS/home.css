@@ -77,6 +77,9 @@ body .h-container .left .leftHeader .postButton {
     font-weight: 700;
     width: 90%;
 }
+body .h-container .left .leftHeader .postButton span{
+    color: black;
+}
 body .h-container .left .leftHeader .postButton:hover{
     background-color: #DCDCDC;
 }
@@ -170,7 +173,7 @@ body .h-container .left .leftFooter .profile-dropdown ul li a:hover{
     background-color: #444;
 }
 body .h-container .middle{
-    display: flex;
+    display: none;
     flex-direction: column;
     width: 48%;
     height: fit-content;
@@ -320,16 +323,17 @@ body .h-container .middle .newsFeed .post-header .user-info{
 body .h-container .middle .newsFeed .post-header .user-info .userInfoGrouper{
 max-width: 600px;
 }
-body .h-container .middle .newsFeed .post-header .user-info .name{
+body .h-container .middle .newsFeed .post-header .user-info .userInfoGrouper .name{
     font-size: 20px;
     font-weight: bold;
     color: #fff;
+    cursor: pointer !important;
 }
-body .h-container .middle .newsFeed .post-header .user-info .username{
+body .h-container .middle .newsFeed .post-header .user-info .userInfoGrouper .username{
     font-size: 16px;
     color: #8899a6;
 }
-body .h-container .middle .newsFeed .post-header .user-info .textarea{
+body .h-container .middle .newsFeed .post-header .user-info .userInfoGrouper .textarea{
     word-wrap: break-word;      
     overflow-wrap: break-word;  
     overflow: hidden;           
@@ -400,7 +404,7 @@ body .h-container .middle .newsFeed .post-metrics .love:hover{
     cursor: pointer;
 }
 body .h-container .profilePageXo{
-    display: none;
+    display: flex;
     flex-direction: column;
     width: 48%;
     height: fit-content;
@@ -490,6 +494,7 @@ body .h-container .profilePageXo .profileProperties .profilePropertiesFr h1{
     font-weight: 800;
 }
 body .h-container .profilePageXo .profileProperties .profilePropertiesFr h2 , span{
+    color: white;
     font-size: 16px; 
 }
 body .h-container .profilePageXo  .twitter-post{
@@ -528,7 +533,8 @@ max-width: 600px;
 body .h-container .profilePageXo  .post-header .user-info .name{
     font-size: 20px;
     font-weight: bold;
-    color: #fff;
+    color: #fff ;
+    cursor: pointer !important;
 }
 body .h-container .profilePageXo  .post-header .user-info .username{
     font-size: 16px;
@@ -540,6 +546,7 @@ body .h-container .profilePageXo .post-header .user-info .textarea{
     overflow: hidden;           
     max-width: 600px;           
     white-space: normal;        
+    color: white;
 }
 body .h-container .profilePageXo .post-header .hashtag{
     color: #1da1f2;
@@ -604,6 +611,7 @@ body .h-container .profilePageXo .post-metrics .love:hover{
     cursor: pointer;
 }  
 body .h-container .right{
+    display: flex;
     align-self: flex-start;
     position: sticky;
     top:0px;
@@ -709,6 +717,31 @@ body .h-container .right .clicked svg{
   body .h-container .right  .searchBar.clicked {
     box-shadow: 0 0 8px rgba(0, 128, 255, 0.7);
   }
+  body .h-container .right .searchBar .dropdown-modal .resultForSearch .profile{
+    width: 90%;
+    background-color: inherit;
+}
+body .h-container .right .searchBar .dropdown-modal .resultForSearch .profile .profile-img {
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    margin-right: 5px;
+  }
+  
+body .h-container .right .searchBar .dropdown-modal .resultForSearch .profile .profile-details {
+    display: flex;
+    flex-direction: column;
+  }
+  
+body .h-container .right .searchBar .dropdown-modal .resultForSearch .profile .name {
+    font-weight: bold;
+    font-size: 13px;
+  }
+  
+body .h-container .right .searchBar .dropdown-modal .resultForSearch .profile .handle {
+    font-size: 11px;
+    color: #888;
+  }
 /*================================================================================================================================================================================*/
 @media screen and (max-width:1550px){
     body .h-container .left .leftHeader .navbar .navButton {
@@ -745,6 +778,9 @@ body .h-container .right .clicked svg{
         font-size: 17px;
         font-weight: 700;
         width: 90%;
+    }
+    body .h-container .left .leftHeader .postButton span{
+        color:black;
     }
     body .h-container .left .leftFooter .profile{
         width: 90%;
@@ -832,6 +868,32 @@ body .h-container .right .clicked svg{
         width: 100%;
         font-size: 14px;
     }
+    body .h-container .right .searchBar .dropdown-modal .resultForSearch .profile{
+        width: 90%;
+        background-color: inherit;
+    }
+    body .h-container .right .searchBar .dropdown-modal .resultForSearch .profile .profile-img {
+        width: 30px;
+        height: 30px;
+        border-radius: 50%;
+        margin-right: 5px;
+      }
+      
+    body .h-container .right .searchBar .dropdown-modal .resultForSearch .profile .profile-details {
+        display: flex;
+        flex-direction: column;
+      }
+      
+    body .h-container .right .searchBar .dropdown-modal .resultForSearch .profile .name {
+        font-weight: bold;
+        font-size: 13px;
+      }
+      
+    body .h-container .right .searchBar .dropdown-modal .resultForSearch .profile .handle {
+        font-size: 11px;
+        color: #888;
+      }
+      
     body .h-container .middle .createPost .create-post-header .profile-img{
         width: 30px;
         height: 30px;
@@ -886,6 +948,7 @@ body .h-container .right .clicked svg{
         font-size: 14px;
         font-weight: bold;
         color: #fff;
+        cursor: pointer;
     }
     body .h-container .middle .newsFeed .post-header .user-info .username{
         font-size: 11px;
@@ -943,7 +1006,7 @@ body .h-container .right .clicked svg{
         width: 90%;
     }
     body .h-container .profilePageXo{
-        display: none;
+        display: flex;
         flex-direction: column;
         width: 48%;
         height: fit-content;
@@ -999,6 +1062,7 @@ body .h-container .right .clicked svg{
         font-weight: 800;
     }
     body .h-container .profilePageXo .profileProperties .profilePropertiesFr h2 , span{
+        color: white;
         font-size: 12px; 
     }
     body .h-container .profilePageXo  .post-header .profile-pic{
@@ -1014,22 +1078,24 @@ body .h-container .right .clicked svg{
     body .h-container .profilePageXo .post-header .user-info .userInfoGrouper{
     max-width: 600px;
     }
-    body .h-container .profilePageXo  .post-header .user-info .name{
+    body .h-container .profilePageXo  .post-header .user-info .userInfoGrouper .name{
         font-size: 16px;
         font-weight: bold;
         color: #fff;
+        cursor:  pointer !important;
     }
-    body .h-container .profilePageXo  .post-header .user-info .username{
+    body .h-container .profilePageXo  .post-header .user-info .userInfoGrouper .username{
         font-size: 10px;
         color: #8899a6;
     }
-    body .h-container .profilePageXo .post-header .user-info .textarea{
+    body .h-container .profilePageXo .post-header .user-info .userInfoGrouper .textarea{
         word-wrap: break-word;      
         overflow-wrap: break-word;  
         overflow: hidden;           
         max-width: 600px;           
         white-space: normal;   
         font-size: 12px;     
+        color: white;
     }
     body .h-container .profilePageXo .post-header .hashtag{
         color: #1da1f2;
@@ -1071,6 +1137,31 @@ body .h-container .right .clicked svg{
         border-radius: 50%;
     
     }
+    body .h-container .right .searchBar .dropdown-modal .resultForSearch .profile{
+        width: 90%;
+        background-color: inherit;
+    }
+    body .h-container .right .searchBar .dropdown-modal .resultForSearch .profile .profile-img {
+        width: 30px;
+        height: 30px;
+        border-radius: 50%;
+        margin-right: 5px;
+      }
+      
+    body .h-container .right .searchBar .dropdown-modal .resultForSearch .profile .profile-details {
+        display: flex;
+        flex-direction: column;
+      }
+      
+    body .h-container .right .searchBar .dropdown-modal .resultForSearch .profile .name {
+        font-weight: bold;
+        font-size: 13px;
+      }
+      
+    body .h-container .right .searchBar .dropdown-modal .resultForSearch .profile .handle {
+        font-size: 11px;
+        color: #888;
+      }
 }
 @media screen and (max-width:794px){
     body .h-container{
@@ -1081,13 +1172,14 @@ body .h-container .right .clicked svg{
     body .h-container .left .leftHeader .navbar .navButton span{
         display:none;
     }
-    body .h-container .left .leftHeader .postButton {
+    body .h-container .left .leftHeader .postButton{
         display:none;
     }
     body .h-container .left{
         width:7.5%;
     }
     body .h-container .middle{
+        display: none;
         width: 80%;
     }
     body .h-container .right{
@@ -1122,10 +1214,35 @@ body .h-container .right .clicked svg{
         fill: #1da1f2;
     }
     body .h-container .profilePageXo{
-       
+       display: flex;
         width: 80%;
 
     }  
+    body .h-container .right .searchBar .dropdown-modal .resultForSearch .profile{
+        width: 90%;
+        background-color: inherit;
+    }
+    body .h-container .right .searchBar .dropdown-modal .resultForSearch .profile .profile-img {
+        width: 30px;
+        height: 30px;
+        border-radius: 50%;
+        margin-right: 5px;
+      }
+      
+    body .h-container .right .searchBar .dropdown-modal .resultForSearch .profile .profile-details {
+        display: flex;
+        flex-direction: column;
+      }
+      
+    body .h-container .right .searchBar .dropdown-modal .resultForSearch .profile .name {
+        font-weight: bold;
+        font-size: 13px;
+      }
+      
+    body .h-container .right .searchBar .dropdown-modal .resultForSearch .profile .handle {
+        font-size: 11px;
+        color: #888;
+      }
 }
 @media screen and (max-width:655px){
     body .h-container {
@@ -1175,17 +1292,24 @@ body .h-container .right .clicked svg{
         left: 1%;
       }
     body .h-container .middle{
+        display: none;
         width: 95vw !important;
         position: relative;
         left: 2.5vw;
       }
+      body .h-container .profilePageXo{
+        display: flex;
+        width: 95vw !important;
+        position: relative;
+        left: 2.5vw;
+     }  
     body .h-container .right{
         height: fit-content;
         width: fit-content;
         position: fixed;
         left: 60%;
         top:calc(100vh - 50px);
-        z-index: 2;
+        z-index: 7;
     }
     body .h-container .right .searchBar input{
         display: block;
@@ -1359,6 +1483,7 @@ body .h-container .right .clicked svg{
         font-size: 14px;
         font-weight: bold;
         color: #fff;
+        cursor: pointer;
     }
     body .h-container .middle .newsFeed .post-header .user-info .username{
         font-size: 12px;
@@ -1417,4 +1542,29 @@ body .h-container .right .clicked svg{
         z-index: 1000;
         padding: 5px;
       }   
+      body .h-container .right .searchBar .dropdown-modal .resultForSearch .profile{
+        width: 90%;
+        background-color: inherit;
+    }
+    body .h-container .right .searchBar .dropdown-modal .resultForSearch .profile .profile-img {
+        width: 30px;
+        height: 30px;
+        border-radius: 50%;
+        margin-right: 5px;
+      }
+      
+    body .h-container .right .searchBar .dropdown-modal .resultForSearch .profile .profile-details {
+        display: flex;
+        flex-direction: column;
+      }
+      
+    body .h-container .right .searchBar .dropdown-modal .resultForSearch .profile .name {
+        font-weight: bold;
+        font-size: 13px;
+      }
+      
+    body .h-container .right .searchBar .dropdown-modal .resultForSearch .profile .handle {
+        font-size: 11px;
+        color: #888;
+      }
 }

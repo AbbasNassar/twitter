@@ -18,9 +18,8 @@ public class PostService {
     public void addPost(Post post) {
         postDAO.insertPost(post);
     }
-
-    public void deletePost(String id) {
-        postDAO.deletePost(id);
+    public List<Post> getUserPost(int Id){
+        return postDAO.getUserPosts(Id);
     }
 
 }

@@ -30,6 +30,7 @@ public class PostController {
     public void registerRoutes(Javalin app) {
         app.get("/fetchPosts", this::fetchAllPosts);
         app.post("/post/create", this::createPost);
+        app.get("/fetchUserPosts", this::fetchUserPosts);
     }
 
     private void fetchAllPosts(Context ctx) throws IOException {
@@ -38,7 +39,7 @@ public class PostController {
         List<Post> sortedAllPosts = allPosts.stream()
                 .sorted((e1, e2) -> e2.getCreatedAt().compareTo(e1.getCreatedAt()))
                 .collect(Collectors.toList());
-        if (allPosts != null) {
+        if (sortedAllPosts.isEmpty() != true) {
             Post firstChild = sortedAllPosts.get(0);
             String name = UserController.getUserName(firstChild.getUserId());
             PebbleTemplate compiledTemplate = engine.getTemplate("templates/pebble/post.peb");
@@ -80,5 +81,30 @@ public class PostController {
         }
         fetchAllPosts(ctx);
         
+    }
+    private void fetchUserPosts(Context ctx)throws IOException{
+    String userEmail = ctx.queryParam("userEmail");
+    int id = UserController.getUserId(userEmail);
+    List <Post> userPosts = postService.getUserPost(id);
+    List<Post> sortedUserPosts = userPosts.stream()
+    .sorted((e1, e2) -> e2.getCreatedAt().compareTo(e1.getCreatedAt()))
+    .collect(Collectors.toList());
+    if (sortedUserPosts.isEmpty() != true){
+        PebbleTemplate compiledTemplate = engine.getTemplate("templates/pebble/post.peb");
+        Writer writer = new StringWriter();
+        HashMap<String, Object> context = new HashMap<>();
+        String output = "";
+        for (Post p : sortedUserPosts){
+            String name = UserController.getUserName(p.getUserId());
+            context.put("name", name);
+            context.put("username", name + "Xo");
+            context.put("createDate", p.getCreatedAt().toString());
+            context.put("textContent", p.getContent());
+            compiledTemplate.evaluate(writer, context);
+            output = writer.toString();
+        }
+        ctx.result(output);
+    }    
+
     }
 }

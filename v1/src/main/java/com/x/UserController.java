@@ -7,6 +7,7 @@ import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.HashMap;
+import java.util.List;
 
 import com.google.inject.Inject;
 import com.mitchellbosecke.pebble.PebbleEngine;
@@ -36,6 +37,7 @@ public class UserController{
         app.post("/users/addUser", this::addUser);
         app.post("/users/logInUser", this::logInUser);
         app.get("/user/home",this::renderUserPage);
+        app.post("/users/search",this::searchUsers);
     }
 
     private void renderIndex(Context ctx) {
@@ -57,6 +59,30 @@ public class UserController{
         String output = writer.toString();
         ctx.html(output);
     }
+    private void searchUsers(Context ctx) throws IOException{
+        System.out.println("hello");
+        String name = ctx.formParam("search");
+        if (name != null){
+            if (name.isEmpty() != true){
+                StringBuilder searchPattern = new StringBuilder();
+                searchPattern.append("%").append(name).append("%");
+                List <User> results = userService.getSearchedUsers(searchPattern.toString());
+                PebbleTemplate compiledTemplate = engine.getTemplate("templates/pebble/UserSearchResponse.peb");
+                Writer writer = new StringWriter();
+                HashMap<String, Object> context = new HashMap<>();
+                String output = "";
+                for ( User u : results){
+                    context.put("name", u.getName());
+                    context.put("username", u.getName() + "Xo");
+                    context.put("ProfileImgSource", "/img/X_logo.jpg");  
+                    compiledTemplate.evaluate(writer, context); 
+                    output = writer.toString();
+                }
+                ctx.result(output);     
+                
+            }
+        }
+    }   
 
     private void HandleUsersEmail(Context ctx) throws IOException {
         String email = ctx.formParam("email");
