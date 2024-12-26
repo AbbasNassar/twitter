@@ -92,7 +92,6 @@ public class PostController {
     private void createPost(Context ctx) throws IOException{
         String postContent = ctx.formParam("postContent");
         String userEmail = ctx.formParam("userEmail");
-        System.out.println( postContent + " " + userEmail);
         if (postContent != null){
             if (postContent.isEmpty() != true){
                 int userId = UserController.getUserId(userEmail);
@@ -107,7 +106,7 @@ public class PostController {
     private void fetchUserPosts(Context ctx)throws IOException{
     String userEmail = ctx.queryParam("userEmail");
     int id = UserController.getUserId(userEmail);
-    List <Post> userPosts = postService.getUserPost(id);
+    List <Post> userPosts = postService.getUserPosts(id);
     List<Post> sortedUserPosts = userPosts.stream()
     .sorted((e1, e2) -> e2.getCreatedAt().compareTo(e1.getCreatedAt()))
     .collect(Collectors.toList());

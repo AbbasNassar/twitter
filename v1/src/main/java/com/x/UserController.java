@@ -45,7 +45,10 @@ public class UserController{
     }
     private void renderUserPage(Context ctx) throws IOException{
         String email = ctx.sessionAttribute("userEmail");
-        User logedInUser = userService.getUser(email);       
+        User logedInUser = userService.getUser(email); 
+        int id = userService.getUserId(email);
+        List <Post> posts = PostService.getUserPosts(id);   
+        int numberOfPosts = numberOfPosts(posts);
         String userName = logedInUser.getName();
         String userUserName = logedInUser.getName() + "Xo";
         PebbleTemplate compiledTemplate = engine.getTemplate("templates/pebble/home.peb");
@@ -53,6 +56,7 @@ public class UserController{
         context.put("name", userName);
         context.put("username", userUserName);
         context.put("userEmail", email);
+        context.put("numberOfPosts", numberOfPosts);
         context.put("ProfileImgSource", "/img/X_logo.jpg");
         Writer writer = new StringWriter();
         compiledTemplate.evaluate(writer, context);
@@ -101,7 +105,6 @@ public class UserController{
     }
     private void handlePasswordStrength(Context ctx) {
         String password = ctx.formParam("password");
-        //System.out.println(password);
 
         if (password == null || password.isEmpty()) {
             ctx.result(PasswordStrengthHandler.generatePasswordResponse("Password cannot be empty.", "text-danger",password));
@@ -180,7 +183,6 @@ public class UserController{
             else{
                 String passwordFromDatabase = userService.checkPassword(email);
                 if (PasswordUtils.verifyPassword(password, passwordFromDatabase)){
-                    System.out.println(email);
                     ctx.header("HX-Redirect", "/user/home");
                     ctx.sessionAttribute("userEmail", email);
                     ctx.status(200);
@@ -212,5 +214,14 @@ public class UserController{
     public static String getUserName(int id){
         String name = userService.getUserName(id);
         return name;
+    }
+    private int numberOfPosts(List<Post> posts){
+        int counter = 0;
+        for(Post p : posts){
+            if (p.getRetweetId() == -1){
+                counter++;
+            }
+        }
+        return counter;
     }
 }

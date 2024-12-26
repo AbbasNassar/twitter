@@ -1,4 +1,5 @@
 <button class="profile">
+            <input id="userEmail{{ userId }}" type="hidden" name="userEmail" value="{{ userEmail }}" />
             <img
               src="{{ ProfileImgSource }}"
               alt="profileImage"

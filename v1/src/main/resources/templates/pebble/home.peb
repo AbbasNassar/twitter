@@ -212,48 +212,6 @@
               </svg>
               <span>Profile</span>
             </button>
-            <script>
-              document.addEventListener("DOMContentLoaded", () => {
-                const buttons = document.querySelectorAll(".navButton");
-                const homeButton = document.getElementById("homeButton");
-
-                const homeSelectedSvg =
-                  homeButton.querySelector("svg:nth-of-type(1)");
-                const hideSvg = homeButton.querySelector("svg:nth-of-type(2)");
-
-                homeSelectedSvg.id = `homeSelectedSvg-${Date.now()}`;
-                hideSvg.id = `hideSvg-${Date.now()}`;
-
-                homeSelectedSvg.style.display = "block";
-                hideSvg.style.display = "none";
-                const homeSpan = homeButton.querySelector("span");
-                if (homeSpan) {
-                  homeSpan.style.fontWeight = "800";
-                }
-
-                buttons.forEach((button) => {
-                  button.addEventListener("click", () => {
-                    buttons.forEach((btn) => {
-                      const span = btn.querySelector("span");
-                      if (span) span.style.fontWeight = "400";
-                    });
-
-                    // Highlight the clicked button
-                    const span = button.querySelector("span");
-                    if (span) span.style.fontWeight = "800";
-
-                    // Show/hide SVGs for the home button
-                    if (button === homeButton) {
-                      homeSelectedSvg.style.display = "block";
-                      hideSvg.style.display = "none";
-                    } else {
-                      homeSelectedSvg.style.display = "none";
-                      hideSvg.style.display = "block";
-                    }
-                  });
-                });
-              });
-            </script>
           </div>
           <button class="btn btn-primary postButton" type="button">
             <span>Post</span>
@@ -364,13 +322,13 @@
         <!-- Profile Indicator -->
         <div class="profileIndicator">
           <div class="backButton">
-            <button>
+            <button id="homeButton">
               <svg viewBox="0 0 24 24" aria-hidden="true" class="r-4qtqp9 r-yyyyoo r-dnmrzs r-bnwqim r-lrvibr r-m6rgpd r-z80fyv r-19wmn03" style="color: rgb(239, 243, 244);"><g><path d="M7.414 13l5.043 5.04-1.414 1.42L3.586 12l7.457-7.46 1.414 1.42L7.414 11H21v2H7.414z"></path></g></svg>
             </button>
           </div>
           <div class="profileDetailsXo">
             <div class="profileName"> {{ name }} </div>
-            <div class="numberOfPosts"> {{ numberOfPosts }}</div>
+            <div class="numberOfPosts">Number of Posts: {{ numberOfPosts }}</div>
           </div>
         </div>
   
@@ -450,6 +408,48 @@
         </script>
       </div>
     </div>
+    <script>
+              document.addEventListener("DOMContentLoaded", () => {
+                const buttons = document.querySelectorAll(".navButton");
+                const homeButton = document.getElementById("homeButton");
+
+                const homeSelectedSvg =
+                  homeButton.querySelector("svg:nth-of-type(1)");
+                const hideSvg = homeButton.querySelector("svg:nth-of-type(2)");
+
+                homeSelectedSvg.id = `homeSelectedSvg-${Date.now()}`;
+                hideSvg.id = `hideSvg-${Date.now()}`;
+
+                homeSelectedSvg.style.display = "block";
+                hideSvg.style.display = "none";
+                const homeSpan = homeButton.querySelector("span");
+                if (homeSpan) {
+                  homeSpan.style.fontWeight = "800";
+                }
+
+                buttons.forEach((button) => {
+                  button.addEventListener("click", () => {
+                    buttons.forEach((btn) => {
+                      const span = btn.querySelector("span");
+                      if (span) span.style.fontWeight = "400";
+                    });
+
+                    // Highlight the clicked button
+                    const span = button.querySelector("span");
+                    if (span) span.style.fontWeight = "800";
+
+                    // Show/hide SVGs for the home button
+                    if (button === homeButton) {
+                      homeSelectedSvg.style.display = "block";
+                      hideSvg.style.display = "none";
+                    } else {
+                      homeSelectedSvg.style.display = "none";
+                      hideSvg.style.display = "block";
+                    }
+                  });
+                });
+              });
+            </script>
     <script>
       document.addEventListener("DOMContentLoaded", () => {
         const buttons = document.querySelectorAll(".navButton");

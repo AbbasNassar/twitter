@@ -5,7 +5,7 @@ import java.util.List;
 import com.google.inject.Inject;
 
 public class PostService {
-    private final PostDAO postDAO; 
+    private static PostDAO postDAO; 
     
     @Inject
     public PostService(PostDAO postDAO) {
@@ -18,7 +18,7 @@ public class PostService {
     public void addPost(Post post) {
         postDAO.insertPost(post);
     }
-    public List<Post> getUserPost(int Id){
+    public static List<Post> getUserPosts(int Id){
         return postDAO.getUserPosts(Id);
     }
     public Post getPost(int id){
