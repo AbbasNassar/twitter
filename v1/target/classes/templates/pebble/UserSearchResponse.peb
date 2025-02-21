@@ -1,4 +1,4 @@
-<button class="profile">
+<button class="profile" hx-get="/user/profile/{{ userEmail }}" hx-target=".middle" hx-swap="innerHTML">
             <input id="userEmail{{ userId }}" type="hidden" name="userEmail" value="{{ userEmail }}" />
             <img
               src="{{ ProfileImgSource }}"

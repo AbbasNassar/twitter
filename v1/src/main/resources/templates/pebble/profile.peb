@@ -1,0 +1,38 @@
+ <div class="profilePageXo" id="hideWhenHome">
+        <!-- Profile Indicator -->
+        <div class="profileIndicator">
+          <div class="backButton">
+            <button id="homeButton">
+              <svg viewBox="0 0 24 24" aria-hidden="true" class="r-4qtqp9 r-yyyyoo r-dnmrzs r-bnwqim r-lrvibr r-m6rgpd r-z80fyv r-19wmn03" style="color: rgb(239, 243, 244);"><g><path d="M7.414 13l5.043 5.04-1.414 1.42L3.586 12l7.457-7.46 1.414 1.42L7.414 11H21v2H7.414z"></path></g></svg>
+            </button>
+          </div>
+          <div class="profileDetailsXo">
+            <div class="profileName"> {{ name }} </div>
+            <div class="numberOfPosts">Number of Posts: {{ numberOfPosts }}</div>
+          </div>
+        </div>
+  
+        <!-- Profile Banner -->
+        <div class="profileBanner">
+          <div class="profileLogo">
+            <img src= {{ProfileImgSource}} alt="Profile Logo" />
+          </div>
+        </div>
+  
+        <!-- Profile Properties -->
+        <div class="profileProperties">
+          <div class="profilePropertiesFr">
+            <h1>{{name}}</h1>
+            <h2>@{{username}}</h2>
+            <span> Hello There, Take a look at my profile.</span>
+          </div>
+        </div>
+        <div class="userPostFeed" hx-get="/fetchUserPosts" hx-trigger="load" hx-target="#userPostFeed" hx-swap="innerHTML" hx-include="[name='userEmail']">
+        <input type="hidden" name="userEmail" value="{{ userEmail }}" />
+          <table>
+            <tbody id="userPostFeed">
+             
+            </tbody>
+          </table>
+        </div>
+      </div>

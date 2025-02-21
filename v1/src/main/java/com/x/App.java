@@ -15,6 +15,12 @@ import io.javalin.rendering.template.JavalinPebble;
 public class App {
     public static void main(String[] args) throws IOException {
 
+        String url = "jdbc:mysql://localhost:3306/twitter";
+        String user = "root";
+        String password = "123123";
+
+        FlywayMigration.migrateDatabase(url, user, password);
+
         // Create Guice injector
         Injector injector = Guice.createInjector(new UserModule());
 

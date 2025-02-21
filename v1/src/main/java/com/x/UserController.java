@@ -37,11 +37,46 @@ public class UserController{
         app.post("/users/addUser", this::addUser);
         app.post("/users/logInUser", this::logInUser);
         app.get("/user/home",this::renderUserPage);
-        app.post("/users/search",this::searchUsers);
+        app.post("/users/search/{userEmail}",this::searchUsers);
+        app.get("/user/profile/{userEmail}", this::renderUserProfile);
+        app.get("user/newsfeed/{userEmail}", this::renderNewsfeed);
     }
+    private void renderNewsfeed(Context ctx) throws IOException{
+        String userEmail = ctx.pathParam("userEmail");
+        User user = userService.getUser(userEmail);
+        PebbleTemplate compiledTemplate = engine.getTemplate("templates/pebble/newsfeed.peb");
+        HashMap<String, Object> context = new HashMap<>();
+        context.put("name", user.getName());
+        context.put("username", user.getName() + "Xo");
+        context.put("userEmail", userEmail);
+        context.put("ProfileImgSource", "/img/X_logo.jpg");
+        Writer writer = new StringWriter();
+        compiledTemplate.evaluate(writer, context);
+        String output = writer.toString();
+        ctx.result(output);
+    }
+    private void renderUserProfile(Context ctx) throws IOException{
+        String userEmail = ctx.pathParam("userEmail");
+        int id = getUserId(userEmail);
+        User user = userService.getUser(userEmail);
+        PebbleTemplate compiledTemplate = engine.getTemplate("templates/pebble/profile.peb");
+        HashMap<String, Object> context = new HashMap<>();
+        List <Post> posts = PostService.getUserPosts(id);   
+        int numberOfPosts = numberOfPosts(posts);
+        context.put("name", user.getName());
+        context.put("username", user.getName() + "Xo");
+        context.put("userEmail", userEmail);
+        context.put("numberOfPosts", numberOfPosts);
+        context.put("ProfileImgSource", "/img/X_logo.jpg");
+        Writer writer = new StringWriter();
+        compiledTemplate.evaluate(writer, context);
+        String output = writer.toString();
+        ctx.result(output);
 
+    }
     private void renderIndex(Context ctx) {
        ctx.render("templates/index.html");
+       
     }
     private void renderUserPage(Context ctx) throws IOException{
         String email = ctx.sessionAttribute("userEmail");
@@ -76,6 +111,7 @@ public class UserController{
                 String output = "";
                 for ( User u : results){
                     context.put("name", u.getName());
+                    context.put("userEmail", u.getEmail());
                     context.put("username", u.getName() + "Xo");
                     context.put("ProfileImgSource", "/img/X_logo.jpg");  
                     compiledTemplate.evaluate(writer, context); 
@@ -132,7 +168,8 @@ public class UserController{
         String birthDate = year + "-" + month + "-" + day;
         LocalDate dateOfBirth = LocalDate.parse(birthDate, DateTimeFormatter.ofPattern("yyyy-MM-dd"));
         LocalDateTime editedAtTime = LocalDateTime.now();
-        User user = new User(0,name, email, password, dateOfBirth, editedAtTime,editedAtTime);
+        String encryptedPassword = PasswordUtils.encryptPassword(password);
+        User user = new User(0,name, email, encryptedPassword, dateOfBirth, editedAtTime,editedAtTime);
         try {
             userService.addUser(user);
             String response = """

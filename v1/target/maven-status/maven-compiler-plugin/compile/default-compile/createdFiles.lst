@@ -12,3 +12,4 @@ com\x\PasswordStrengthHandler.class
 com\x\UserService.class
 com\x\PasswordUtils.class
 com\x\User.class
+com\x\FlywayMigration.class

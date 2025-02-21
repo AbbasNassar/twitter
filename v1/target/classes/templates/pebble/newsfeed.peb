@@ -1,0 +1,62 @@
+<div class="middle" id="hideWhenProfile" hx-trigger="load">
+        <div class="modalIndicator">
+          <button type="button">For you</button>
+          <button type="button">Following</button>
+        </div>
+        <script>
+          document.addEventListener("DOMContentLoaded", () => {
+            const buttons = document.querySelectorAll(".modalIndicator button");
+
+            buttons.forEach((button) => {
+              button.addEventListener("click", () => {
+                // Remove 'selected' class from all buttons
+                buttons.forEach((btn) => {
+                  btn.classList.remove("selected");
+                  btn.style.color = "grey"; // Reset non-selected buttons to greyish color
+                });
+
+                // Add 'selected' class to the clicked button
+                button.classList.add("selected");
+                button.style.color = "white"; // Set the selected button's font color to white
+              });
+            });
+          });
+        </script>
+        <div class="createPost">
+          <form id="postForm" hx-post="/post/create" hx-target="#newsFeed" hx-swap="innerHTML">
+            <span>{{name}}</span>
+            <input id="emailProvider" type="hidden" name="userEmail" value="{{ userEmail }}" />
+            <textarea
+              id = "postContent"
+              class="create-post-input"
+              placeholder="What is happening?!"
+              oninput="adjustHeight(this)"
+              name="postContent"
+            ></textarea>
+            <script>
+               function adjustHeight(textarea) {
+      textarea.style.height = "auto"; // Reset height to calculate the new height
+      textarea.style.height = textarea.scrollHeight + "px"; // Set height to the scroll height
+    }
+
+     
+    function clearTextareaWithDelay() {
+      setTimeout(() => {
+        const textarea = document.getElementById("postContent");
+        textarea.value = ""; // Clear the content
+        textarea.style.height = ""; // Reset the height if necessary
+        console.log("Textarea cleared after delay"); // For debugging
+      }, 100); // 500ms delay
+    }
+            </script>
+            <button class="post-btn" type="submit"  hx-on:click="clearTextareaWithDelay()">Post</button>
+          </form>
+        </div>
+        <div class="newsFeed" hx-get="/fetchPosts" hx-trigger="load" hx-target="table tbody" hx-swap="innerHTML">
+          <table>
+            <tbody id="newsFeed">
+             
+            </tbody>
+          </table>
+        </div>
+      </div>
