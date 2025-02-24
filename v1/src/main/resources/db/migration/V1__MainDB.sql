@@ -40,3 +40,4 @@ INSERT INTO posts (user_id, content, created_at, updated_at, retweet_id) VALUES
 (3, 'User 3 has written this post.', '2024-12-21 10:00:00', '2024-12-21 12:00:00'),
 (2, 'Another contribution by user 2.', '2024-12-21 08:00:00', '2024-12-21 10:00:00'),
 (4, 'Post by a new user, user 4.', '2024-12-22 14:00:00', '2024-12-22 16:00:00');
+
