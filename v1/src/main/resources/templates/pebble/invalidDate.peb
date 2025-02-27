@@ -1,6 +1,6 @@
 <div class="birth-date" id="dateForm">
                     <h3>Date of birth</h3>
-                    <span calss = "text-danger">
+                    <span class="form-text text-danger">
                     {{ message }}
                     </span>
                     <span>

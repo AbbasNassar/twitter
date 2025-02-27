@@ -20,6 +20,12 @@ import io.javalin.http.Context;
 
 public class UserController{
    
+    private boolean nameLogIn = false;
+    private boolean usernameLogIn = false;
+    private boolean emailLogIn = false;
+    private boolean passwordLogIn = false;
+    private boolean dateLogIn = false;
+
 
     private static UserService userService;
     PebbleEngine engine = new PebbleEngine.Builder().loader(new ClasspathLoader()).build();
@@ -32,6 +38,8 @@ public class UserController{
 
     public void registerRoutes(Javalin app) {
         app.get("/", this::renderIndex);          // Render main page
+        app.post("/users/name", this::handleName);
+        app.post("/users/username", this::handleUsername);
         app.post("/users/email", this::HandleUsersEmail); // Returns partial HTML for user list
         app.post("/users/password", this::handlePasswordStrength);
         app.post("/users/addUser", this::addUser);
@@ -121,7 +129,67 @@ public class UserController{
                 
             }
         }
-    }   
+    }
+    
+    private void handleName(Context ctx) throws IOException {
+        String name = ctx.formParam("name");
+        System.out.println(name);
+        PebbleTemplate compiledTemplate = engine.getTemplate("templates/pebble/NameResponse.peb");
+        HashMap<String, Object> context = new HashMap<>();
+        if (name == null || name.isEmpty() == true){
+            String invalidMessage = "Name can't be empty.";
+            context.put("name", name);
+            context.put("message", invalidMessage);
+            Writer writer = new StringWriter();
+            compiledTemplate.evaluate(writer, context);
+            String output = writer.toString();
+            ctx.html(output);
+            nameLogIn = false;
+        }
+        else{
+            context.put("name", name);
+            Writer writer = new StringWriter();
+            compiledTemplate.evaluate(writer, context);
+            String output = writer.toString();
+            ctx.html(output);
+            nameLogIn = true;
+        }
+    }
+
+
+    private void handleUsername(Context ctx) throws IOException {
+        String username = ctx.formParam("username");
+        List<String> usersUsernames = userService.getUsersUsername();
+        PebbleTemplate compiledTemplate = engine.getTemplate("templates/pebble/usernameResponse.peb");
+        HashMap<String, Object> context = new HashMap<>();
+        if (usersUsernames.contains(username) && username.isEmpty() != true) {
+            String invalidMessage = "Username is already taken";
+            context.put("username", username);
+            context.put("message", invalidMessage);
+            Writer writer = new StringWriter();
+            compiledTemplate.evaluate(writer, context);
+            String output = writer.toString();
+            ctx.html(output);
+            usernameLogIn = false;
+        } else if ( username != null && username.isEmpty() != true) {
+            String validMessage = "Valid ya wa7sh";
+            context.put("username", username);
+            context.put("message", validMessage);
+            Writer writer = new StringWriter();
+            compiledTemplate.evaluate(writer, context);
+            String output = writer.toString();
+            ctx.html(output);
+            usernameLogIn = true;
+        }
+        else{
+            context.put("username", username);
+            Writer writer = new StringWriter();
+            compiledTemplate.evaluate(writer, context);
+            String output = writer.toString();
+            ctx.html(output);
+            usernameLogIn = false;
+        }
+    }
 
     private void HandleUsersEmail(Context ctx) throws IOException {
         String email = ctx.formParam("email");
@@ -130,28 +198,56 @@ public class UserController{
             boolean isEmailExists = EmailHandler.isEmailInList(email, userService.getAllEmails());
             if (isEmailExists) {
                 ctx.result(EmailHandler.generateEmailExistsResponse(email));
+                emailLogIn = false;
             }
             else{
                 ctx.result(EmailHandler.generateValidEmailResponse(email));
+                emailLogIn = true;
             }
         }
         else {
             ctx.result(EmailHandler.generateInvalidEmailResponse(email));
+            emailLogIn = false;
         }
     }
-    private void handlePasswordStrength(Context ctx) {
+    private void handlePasswordStrength(Context ctx) throws IOException {
         String password = ctx.formParam("password");
 
+        PebbleTemplate compiledTemplate = engine.getTemplate("templates/pebble/PasswordResponse.peb");
+        HashMap<String, Object> context = new HashMap<>();
+        
+
         if (password == null || password.isEmpty()) {
-            ctx.result(PasswordStrengthHandler.generatePasswordResponse("Password cannot be empty.", "text-danger",password));
+            String invalidMessage = "Password cannot be empty.";
+            context.put("password", password);
+            context.put("message", invalidMessage);
+            context.put("cssClass", "text-danger");
+            Writer writer = new StringWriter();
+            compiledTemplate.evaluate(writer, context);
+            String output = writer.toString();
+            ctx.html(output);
+            passwordLogIn = false;
         } else {
             String strength = PasswordStrengthHandler.evaluatePasswordStrength(password);
             String cssClass = PasswordStrengthHandler.getStrengthClass(strength);
-            ctx.result(PasswordStrengthHandler.generatePasswordResponse("Password strength: " + strength, cssClass,password));
+            String message = "Password strength: ";
+            context.put("password", password);
+            context.put("message", message);
+            context.put("cssClass", cssClass);
+            context.put("strength", strength);
+            Writer writer = new StringWriter();
+            compiledTemplate.evaluate(writer, context);
+            String output = writer.toString();
+            ctx.html(output);
+            if (strength == "Strong")
+                passwordLogIn = true;
+            else 
+                passwordLogIn = false;    
         }
     }
     private void addUser(Context ctx) throws IOException{
         String name = ctx.formParam("name");
+        String username = ctx.formParam("username");
         String email = ctx.formParam("email");
         String password = ctx.formParam("password");
         String day = ctx.formParam("dd");
@@ -159,30 +255,34 @@ public class UserController{
         String year = ctx.formParam("yyyy");
         if (year.equals("year") || month.equals("month") || day.equals("day")){
             ctx.result(generateInvalidDateResponse());
+            dateLogIn = false;
         }
         else {
-        if (day.length() == 1)
-            day = "0" + day;
-        if (month.length() == 1)
-            month = "0" + month;    
-        String birthDate = year + "-" + month + "-" + day;
-        LocalDate dateOfBirth = LocalDate.parse(birthDate, DateTimeFormatter.ofPattern("yyyy-MM-dd"));
-        LocalDateTime editedAtTime = LocalDateTime.now();
-        String encryptedPassword = PasswordUtils.encryptPassword(password);
-        User user = new User(0,name, email, encryptedPassword, dateOfBirth, editedAtTime,editedAtTime);
-        try {
-            userService.addUser(user);
-            String response = """
-                <script>
-                    // Hide the modal by setting its display style to 'none'
-                    document.getElementById('upModal').style.display = 'none';
-                    alert('User has been added successfully!');
-                </script>
-            """;
-            ctx.result(response);  
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+            dateLogIn = true;
+            if (nameLogIn == true && usernameLogIn == true && emailLogIn == true && passwordLogIn == true && dateLogIn == true){
+                if (day.length() == 1)
+                day = "0" + day;
+            if (month.length() == 1)
+                month = "0" + month;    
+            String birthDate = year + "-" + month + "-" + day;
+            LocalDate dateOfBirth = LocalDate.parse(birthDate, DateTimeFormatter.ofPattern("yyyy-MM-dd"));
+            LocalDateTime editedAtTime = LocalDateTime.now();
+            String encryptedPassword = PasswordUtils.encryptPassword(password);
+            User user = new User(0,name, email, encryptedPassword, dateOfBirth, editedAtTime,editedAtTime, username);
+            try {
+                userService.addUser(user);
+                String response = """
+                    <script>
+                        // Hide the modal by setting its display style to 'none'
+                        document.getElementById('upModal').style.display = 'none';
+                        alert('User has been added successfully!');
+                    </script>
+                """;
+                ctx.result(response);  
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+            }
         }
     }
     private void logInUser(Context ctx) throws IOException{

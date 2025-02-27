@@ -29,16 +29,4 @@ public class PasswordStrengthHandler {
             default -> "text-danger";
         };
     }
-
-    public static String generatePasswordResponse(String message, String cssClass, String password) {
-        return "<div class=\"form-floating mb-3 black-theme\" hx-target=\"this\" hx-swap=\"outerHTML\">"
-        + "<input type=\"password\" class=\"form-control\" id=\"passwordInput\" name=\"password\" "
-        + "placeholder=\"Password\" hx-post=\"/users/password\" value=\"" + password + "\">"
-        + "<label for=\"passwordInput\" class=\"up-form-desc\">Password</label>"
-        + "<div id=\"passwordStrength\" class=\"form-text " + cssClass + "\">" + message + "</div>"
-        + "</div>"
-        + "<script>"
-        + "document.getElementById('registerButton').disabled = " + (!cssClass.equals("text-success")) + ";"
-        + "</script>"; 
-    }
 }

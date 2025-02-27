@@ -10,7 +10,7 @@
       crossorigin="anonymous"
     />
     <script src="https://unpkg.com/htmx.org@2.0.3" integrity="sha384-0895/pl2MU10Hqc6jd4RvrthNlDiE9U1tWmX7WRESftEDRosgxNsQG/Ze9YMRzHq" crossorigin="anonymous"></script>
-    <link rel="stylesheet" href="CSS/main.css" />
+    <link rel="stylesheet" href="/CSS/main.css" />
     <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
     <title>X</title>
     <link rel="icon" type="image/x-icon" href="img/X_logo.jpg">
@@ -140,9 +140,13 @@
             <div class="up-modal-body">
               <div class="up-d-grid gap-2">
                 <form hx-post="/users">
-                  <div class="form-floating mb-3 black-theme">
-                    <input type="text" class="form-control" id="nameInput" name="name" placeholder="name">
+                  <div class="form-floating mb-3 black-theme" hx-target="this" hx-swap="outerHTML">
+                    <input type="text" class="form-control" id="nameInput" name="name" placeholder="name" hx-post="/users/name">
                     <label for="floatingInput" class="up-form-desc">Name</label>
+                  </div>
+                  <div class="form-floating mb-3 black-theme" hx-target="this" hx-swap="outerHTML">
+                    <input type="text" class="form-control" id="usernameInput" name="username" placeholder="username" hx-post="/users/username">
+                    <label for="floatingInput" class="up-form-desc">Username</label>
                   </div>
                   <div class="form-floating mb-3 black-theme"  hx-target="this" hx-swap="outerHTML">
                     <input type="email" class="form-control" id="emailInput" name="email" placeholder="email" hx-post="/users/email">
@@ -165,7 +169,7 @@
                       </SELECT>
                   </div>
                   <script src="Js/birth-date.js"></script>
-                  <button id="registerButton" class="btn btn-primary" type="button" hx-post="/users/addUser" hx-target="#dateForm" hx-swap="outerHTML" disabled>Log In</button>
+                  <button id="registerButton" class="btn btn-primary" type="button" hx-post="/users/addUser" hx-target="#dateForm" hx-swap="none">Log In</button>
                 </form>
             </div>
       </div>

@@ -4,8 +4,10 @@ com\x\UserDAO.class
 com\x\App.class
 com\x\PostController.class
 com\x\UserModule.class
+com\x\Reply.class
 com\x\PostService.class
 com\x\UserController.class
+com\x\Comment.class
 com\x\Post.class
 com\x\PostModule.class
 com\x\PasswordStrengthHandler.class

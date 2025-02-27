@@ -12,8 +12,8 @@ public class UserService {
         this.userDAO = userDAO;
     }
 
-    public List<User> getAllUsers() {
-        return userDAO.listAll();
+    public List<String> getUsersUsername() {
+        return userDAO.getUsersUsername();
     }
     public User getUser(String email){
         return userDAO.getUser(email);

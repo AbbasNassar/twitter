@@ -2,6 +2,6 @@
     <input type="email" class="form-control" id="emailInput" name="email" placeholder="email" hx-post="/users/email" value = "{{ email }}">
     <label for="floatingInput" class="up-form-desc">Email</label>
     {% if invalidEmail %}
-        <span calss = "text-danger"> {{ message }} </span>
+        <span class="form-text text-danger"> {{ message }} </span>
     {% endif %}
 </div>

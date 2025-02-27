@@ -1,0 +1,5 @@
+<div class="form-floating mb-3 black-theme" hx-target="this" hx-swap="outerHTML">
+                    <input type="text" class="form-control" id="nameInput" name="name" placeholder="name" hx-post="/users/name" value="{{ name }}">
+                    <label for="floatingInput" class="up-form-desc">Name</label>
+                    <span class="form-text text-danger"> {{ message }} </span>
+</div>
