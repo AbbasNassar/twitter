@@ -235,7 +235,7 @@
             />
             <div class="profile-details">
               <span class="name" id="userName">{{ name }}</span>
-              <span class="handle">{{ username }}</span>
+              <span class="handle">@{{ username }}</span>
             </div>
             <div class="options">...</div>
           </button>

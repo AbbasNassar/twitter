@@ -13,6 +13,9 @@ public interface UserDAO {
     @SqlQuery("SELECT username FROM users")
     List<String> getUsersUsername();
 
+    @SqlQuery("SELECT username FROM users WHERE id = :id")
+    String getUserUsername(@Bind ("id") int id);
+
     @SqlUpdate("INSERT INTO users (name, email, password, date_of_birth, created_at, updated_at, username) VALUES (:user.name, :user.email, :user.password, :user.dateOfBirth, :user.createdAt, :user.updatedAt, :user.username)")
     void insertUser(@BindBean("user") User user);
 

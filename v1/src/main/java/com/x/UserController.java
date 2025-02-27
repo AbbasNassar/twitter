@@ -55,7 +55,7 @@ public class UserController{
         PebbleTemplate compiledTemplate = engine.getTemplate("templates/pebble/newsfeed.peb");
         HashMap<String, Object> context = new HashMap<>();
         context.put("name", user.getName());
-        context.put("username", user.getName() + "Xo");
+        context.put("username", user.getUsername());
         context.put("userEmail", userEmail);
         context.put("ProfileImgSource", "/img/X_logo.jpg");
         Writer writer = new StringWriter();
@@ -72,7 +72,7 @@ public class UserController{
         List <Post> posts = PostService.getUserPosts(id);   
         int numberOfPosts = numberOfPosts(posts);
         context.put("name", user.getName());
-        context.put("username", user.getName() + "Xo");
+        context.put("username", user.getUsername());
         context.put("userEmail", userEmail);
         context.put("numberOfPosts", numberOfPosts);
         context.put("ProfileImgSource", "/img/X_logo.jpg");
@@ -93,7 +93,7 @@ public class UserController{
         List <Post> posts = PostService.getUserPosts(id);   
         int numberOfPosts = numberOfPosts(posts);
         String userName = logedInUser.getName();
-        String userUserName = logedInUser.getName() + "Xo";
+        String userUserName = logedInUser.getUsername();
         PebbleTemplate compiledTemplate = engine.getTemplate("templates/pebble/home.peb");
         HashMap<String, Object> context = new HashMap<>();
         context.put("name", userName);
@@ -120,7 +120,7 @@ public class UserController{
                 for ( User u : results){
                     context.put("name", u.getName());
                     context.put("userEmail", u.getEmail());
-                    context.put("username", u.getName() + "Xo");
+                    context.put("username", u.getUsername());
                     context.put("ProfileImgSource", "/img/X_logo.jpg");  
                     compiledTemplate.evaluate(writer, context); 
                     output = writer.toString();
@@ -351,6 +351,10 @@ public class UserController{
     public static String getUserName(int id){
         String name = userService.getUserName(id);
         return name;
+    }
+    public static String getUserUsername(int id){
+        String username = userService.getUserUsername(id);
+        return username;
     }
     private int numberOfPosts(List<Post> posts){
         int counter = 0;

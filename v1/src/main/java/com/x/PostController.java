@@ -55,6 +55,7 @@ public class PostController {
         if (sortedAllPosts.isEmpty() != true) {
             Post firstChild = sortedAllPosts.get(0);
             String name = UserController.getUserName(firstChild.getUserId());
+            String username = UserController.getUserUsername(firstChild.getUserId());
             PebbleTemplate compiledTemplate = engine.getTemplate("templates/pebble/post.peb");
             Writer writer = new StringWriter();
             HashMap<String, Object> context = new HashMap<>();
@@ -62,7 +63,7 @@ public class PostController {
                 context.put("postId",firstChild.getId());
                 context.put("userId", firstChild.getUserId());
                 context.put("name", name);
-                context.put("username", name + "Xo");
+                context.put("username", username);
                 context.put("createDate", firstChild.getCreatedAt().toString());
                 context.put("textContent", firstChild.getContent());
                 compiledTemplate.evaluate(writer, context);
@@ -74,10 +75,11 @@ public class PostController {
                     Post p = sortedAllPosts.get(i);
                     if (p.getRetweetId() == -1){
                         String nameUser = UserController.getUserName(p.getUserId());
+                        String usernameUser = UserController.getUserUsername(p.getUserId());
                         context.put("postId",p.getId());
                         context.put("userId", p.getUserId());
                         context.put("name", nameUser);
-                        context.put("username", nameUser + "Xo");
+                        context.put("username", usernameUser);
                         context.put("createDate", p.getCreatedAt().toString());
                         context.put("textContent", p.getContent());
                         compiledTemplate.evaluate(writer, context);
@@ -117,14 +119,17 @@ public class PostController {
         String output = "";
         for (Post p : sortedUserPosts){
             String name;
+            String username;
             if (p.getRetweetId() == -1){
                 name = UserController.getUserName(p.getUserId());
+                username = UserController.getUserUsername(p.getUserId());
             }
             else{
                 name = UserController.getUserName(p.getRetweetId());
+                username = UserController.getUserUsername(p.getUserId());
             }
             context.put("name", name);
-            context.put("username", name + "Xo");
+            context.put("username", username);
             context.put("createDate", p.getCreatedAt().toString());
             context.put("textContent", p.getContent());
             compiledTemplate.evaluate(writer, context);
