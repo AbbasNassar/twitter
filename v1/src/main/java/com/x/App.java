@@ -22,14 +22,17 @@ public class App {
         FlywayMigration.migrateDatabase(url, user, password);
 
         // Create Guice injector
-        Injector injector = Guice.createInjector(new UserModule());
+        //Injector injector = Guice.createInjector(new UserModule());
 
         // Get TodoController from Guice
-        UserController controller = injector.getInstance(UserController.class);
-        Injector postInjector = Guice.createInjector(new PostModule());
+       // UserController controller = injector.getInstance(UserController.class);
+       // Injector postInjector = Guice.createInjector(new PostModule());
 
-        PostController postController = postInjector.getInstance(PostController.class);
-        PebbleEngine engine = new PebbleEngine.Builder().loader(new ClasspathLoader()).build();
+        // PostController postController = postInjector.getInstance(PostController.class);
+         PebbleEngine engine = new PebbleEngine.Builder().loader(new ClasspathLoader()).build();
+        Injector injector = Guice.createInjector(new DatabaseModule(),new UserModule(), new PostModule());
+        UserController controller = injector.getInstance(UserController.class);
+        PostController postController = injector.getInstance(PostController.class);
 
         Javalin app = Javalin.create(config -> {
         config.fileRenderer(new JavalinPebble(engine));

@@ -27,7 +27,7 @@ public class UserController{
     private boolean dateLogIn = false;
 
 
-    private static UserService userService;
+    private UserService userService;
     PebbleEngine engine = new PebbleEngine.Builder().loader(new ClasspathLoader()).build();
 
 
@@ -65,7 +65,7 @@ public class UserController{
     }
     private void renderUserProfile(Context ctx) throws IOException{
         String userEmail = ctx.pathParam("userEmail");
-        int id = getUserId(userEmail);
+        int id = userService.getUserId(userEmail);
         User user = userService.getUser(userEmail);
         PebbleTemplate compiledTemplate = engine.getTemplate("templates/pebble/profile.peb");
         HashMap<String, Object> context = new HashMap<>();
@@ -343,18 +343,6 @@ public class UserController{
         compiledTemplate.evaluate(writer, context);
         String output = writer.toString();
         return output;
-    }
-    public static int getUserId(String email){
-        int id = userService.getUserId(email);
-        return id;
-    }
-    public static String getUserName(int id){
-        String name = userService.getUserName(id);
-        return name;
-    }
-    public static String getUserUsername(int id){
-        String username = userService.getUserUsername(id);
-        return username;
     }
     private int numberOfPosts(List<Post> posts){
         int counter = 0;

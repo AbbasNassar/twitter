@@ -2,11 +2,13 @@ com\x\EmailHandler.class
 com\x\PostDAO.class
 com\x\UserDAO.class
 com\x\App.class
+com\x\Reaction.class
 com\x\PostController.class
 com\x\UserModule.class
 com\x\Reply.class
 com\x\PostService.class
 com\x\UserController.class
+com\x\DatabaseModule.class
 com\x\Comment.class
 com\x\Post.class
 com\x\PostModule.class

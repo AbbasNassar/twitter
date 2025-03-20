@@ -18,13 +18,16 @@ import io.javalin.http.Context;
 
 public class PostController {
 
-    private static PostService postService;
+    private final PostService postService;
+    private final UserService userService;
 
     PebbleEngine engine = new PebbleEngine.Builder().loader(new ClasspathLoader()).build();
 
     @Inject
-    public PostController(PostService postService) {
+    public PostController(PostService postService, UserService userService) {
         this.postService = postService;
+        this.userService = userService;
+
     }
 
     public void registerRoutes(Javalin app) {
@@ -37,7 +40,7 @@ public class PostController {
     private void repostPost(Context ctx){
         String id = ctx.formParam("postId");
         String viewerEmail = ctx.formParam("userEmail"); 
-        int viewerId = UserController.getUserId(viewerEmail);
+        int viewerId = userService.getUserId(viewerEmail);
         int idInt = Integer.parseInt(id);
         Post originPost = postService.getPost(idInt);
         if (viewerId != originPost.getUserId()){
@@ -54,8 +57,8 @@ public class PostController {
                 .collect(Collectors.toList());
         if (sortedAllPosts.isEmpty() != true) {
             Post firstChild = sortedAllPosts.get(0);
-            String name = UserController.getUserName(firstChild.getUserId());
-            String username = UserController.getUserUsername(firstChild.getUserId());
+            String name = userService.getUserName(firstChild.getUserId());
+            String username = userService.getUserUsername(firstChild.getUserId());
             PebbleTemplate compiledTemplate = engine.getTemplate("templates/pebble/post.peb");
             Writer writer = new StringWriter();
             HashMap<String, Object> context = new HashMap<>();
@@ -74,8 +77,8 @@ public class PostController {
                 for (int i =1; i<sortedAllPosts.size(); i++){
                     Post p = sortedAllPosts.get(i);
                     if (p.getRetweetId() == -1){
-                        String nameUser = UserController.getUserName(p.getUserId());
-                        String usernameUser = UserController.getUserUsername(p.getUserId());
+                        String nameUser = userService.getUserName(p.getUserId());
+                        String usernameUser = userService.getUserUsername(p.getUserId());
                         context.put("postId",p.getId());
                         context.put("userId", p.getUserId());
                         context.put("name", nameUser);
@@ -96,7 +99,7 @@ public class PostController {
         String userEmail = ctx.formParam("userEmail");
         if (postContent != null){
             if (postContent.isEmpty() != true){
-                int userId = UserController.getUserId(userEmail);
+                int userId = userService.getUserId(userEmail);
                 LocalDateTime createTime = LocalDateTime.now();
                 Post post = new Post(0, userId, postContent, createTime,createTime, -1);
                 postService.addPost(post);
@@ -107,7 +110,7 @@ public class PostController {
     }
     private void fetchUserPosts(Context ctx)throws IOException{
     String userEmail = ctx.queryParam("userEmail");
-    int id = UserController.getUserId(userEmail);
+    int id = userService.getUserId(userEmail);
     List <Post> userPosts = postService.getUserPosts(id);
     List<Post> sortedUserPosts = userPosts.stream()
     .sorted((e1, e2) -> e2.getCreatedAt().compareTo(e1.getCreatedAt()))
@@ -121,12 +124,12 @@ public class PostController {
             String name;
             String username;
             if (p.getRetweetId() == -1){
-                name = UserController.getUserName(p.getUserId());
-                username = UserController.getUserUsername(p.getUserId());
+                name = userService.getUserName(p.getUserId());
+                username = userService.getUserUsername(p.getUserId());
             }
             else{
-                name = UserController.getUserName(p.getRetweetId());
-                username = UserController.getUserUsername(p.getUserId());
+                name = userService.getUserName(p.getRetweetId());
+                username = userService.getUserUsername(p.getUserId());
             }
             context.put("name", name);
             context.put("username", username);
