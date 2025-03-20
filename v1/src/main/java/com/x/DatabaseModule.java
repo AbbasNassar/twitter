@@ -10,7 +10,6 @@ import com.google.inject.Singleton;
 public class DatabaseModule extends AbstractModule {
     @Override
     protected void configure() {
-        // No need to bind Jdbi here if using @Provides
     }
 
     @Provides

@@ -12,16 +12,24 @@ public class Reaction {
     @ColumnName("retweets")
     private int retweets;
 
+    @ColumnName("comments")
+    private int comments;
+
+    @ColumnName("views")
+    private int views;
+
     // Default constructor
     public Reaction() {
 
     }
 
     // Constructor with parameters
-    public Reaction(int postId, int likes, int retweets) {
+    public Reaction(int postId, int likes, int retweets, int comments, int views) {
         this.postId = postId;
         this.likes = likes;
         this.retweets = retweets;
+        this.comments = comments;
+        this.views = views;
     }
 
     // Getters and Setters
@@ -49,6 +57,22 @@ public class Reaction {
         this.retweets = retweets;
     }
 
+    public int getComments (){
+        return comments;
+    }
+    
+    public void setComments(int comments){
+        this.comments = comments;
+    }
+
+    public int getViews(){
+        return views;
+    }
+
+    public void setViews(int views){
+        this.views = views;
+    }
+
     // toString Method
     @Override
     public String toString() {
@@ -56,6 +80,8 @@ public class Reaction {
                 "postId=" + postId +
                 ", likes=" + likes +
                 ", retweets=" + retweets +
+                ", comments=" + comments +
+                ", views=" + views +
                 '}';
     }
 }

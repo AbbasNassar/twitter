@@ -15,22 +15,14 @@ import io.javalin.rendering.template.JavalinPebble;
 public class App {
     public static void main(String[] args) throws IOException {
 
-        String url = "jdbc:mysql://localhost:3306/twitter";
+        String url = "jdbc:mysql://localhost:3306/twitter?allowMultiQueries=true";
         String user = "root";
         String password = "123123";
 
         FlywayMigration.migrateDatabase(url, user, password);
 
-        // Create Guice injector
-        //Injector injector = Guice.createInjector(new UserModule());
-
-        // Get TodoController from Guice
-       // UserController controller = injector.getInstance(UserController.class);
-       // Injector postInjector = Guice.createInjector(new PostModule());
-
-        // PostController postController = postInjector.getInstance(PostController.class);
-         PebbleEngine engine = new PebbleEngine.Builder().loader(new ClasspathLoader()).build();
-        Injector injector = Guice.createInjector(new DatabaseModule(),new UserModule(), new PostModule());
+        PebbleEngine engine = new PebbleEngine.Builder().loader(new ClasspathLoader()).build();
+        Injector injector = Guice.createInjector(new DatabaseModule(),new UserModule(), new PostModule(), new ReactionModule());
         UserController controller = injector.getInstance(UserController.class);
         PostController postController = injector.getInstance(PostController.class);
 

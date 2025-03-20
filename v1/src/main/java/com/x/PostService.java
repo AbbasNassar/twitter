@@ -6,17 +6,21 @@ import com.google.inject.Inject;
 
 public class PostService {
     private static PostDAO postDAO; 
+    private static ReactionDAO reactionDAO;
     
     @Inject
-    public PostService(PostDAO postDAO) {
+    public PostService(PostDAO postDAO, ReactionDAO reactionDAO) {
         this.postDAO = postDAO;
+        this.reactionDAO = reactionDAO;
     }
 
     public List<Post> getAllPosts() {
         return postDAO.getAllPosts();
     }
-    public void addPost(Post post) {
-        postDAO.insertPost(post);
+    public int addPost(Post post) {
+        int postId = postDAO.insertPost(post);
+        reactionDAO.insertReaction(postId); 
+        return postId;
     }
     public static List<Post> getUserPosts(int Id){
         return postDAO.getUserPosts(Id);

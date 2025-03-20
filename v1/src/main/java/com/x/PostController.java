@@ -20,13 +20,15 @@ public class PostController {
 
     private final PostService postService;
     private final UserService userService;
+    private final ReactionService reactionService;
 
     PebbleEngine engine = new PebbleEngine.Builder().loader(new ClasspathLoader()).build();
 
     @Inject
-    public PostController(PostService postService, UserService userService) {
+    public PostController(PostService postService, UserService userService, ReactionService reactionService) {
         this.postService = postService;
         this.userService = userService;
+        this.reactionService = reactionService;
 
     }
 
@@ -59,6 +61,7 @@ public class PostController {
             Post firstChild = sortedAllPosts.get(0);
             String name = userService.getUserName(firstChild.getUserId());
             String username = userService.getUserUsername(firstChild.getUserId());
+            Reaction reaction = reactionService.getPostReaction(firstChild.getId());
             PebbleTemplate compiledTemplate = engine.getTemplate("templates/pebble/post.peb");
             Writer writer = new StringWriter();
             HashMap<String, Object> context = new HashMap<>();
@@ -69,6 +72,10 @@ public class PostController {
                 context.put("username", username);
                 context.put("createDate", firstChild.getCreatedAt().toString());
                 context.put("textContent", firstChild.getContent());
+                context.put("likes", reaction.getLikes());
+                context.put("comments", reaction.getComments());
+                context.put("retweets", reaction.getRetweets());
+                context.put("views", reaction.getViews());
                 compiledTemplate.evaluate(writer, context);
                 
             }
@@ -76,6 +83,7 @@ public class PostController {
             if (allPosts.size() > 1){
                 for (int i =1; i<sortedAllPosts.size(); i++){
                     Post p = sortedAllPosts.get(i);
+                    Reaction react = reactionService.getPostReaction(p.getId());
                     if (p.getRetweetId() == -1){
                         String nameUser = userService.getUserName(p.getUserId());
                         String usernameUser = userService.getUserUsername(p.getUserId());
@@ -85,6 +93,10 @@ public class PostController {
                         context.put("username", usernameUser);
                         context.put("createDate", p.getCreatedAt().toString());
                         context.put("textContent", p.getContent());
+                        context.put("likes", react.getLikes());
+                        context.put("comments", react.getComments());
+                        context.put("retweets", react.getRetweets());
+                        context.put("views", react.getViews());
                         compiledTemplate.evaluate(writer, context);
                         output = writer.toString();
                     }
@@ -123,6 +135,7 @@ public class PostController {
         for (Post p : sortedUserPosts){
             String name;
             String username;
+            Reaction react = reactionService.getPostReaction(p.getId());
             if (p.getRetweetId() == -1){
                 name = userService.getUserName(p.getUserId());
                 username = userService.getUserUsername(p.getUserId());
@@ -135,11 +148,14 @@ public class PostController {
             context.put("username", username);
             context.put("createDate", p.getCreatedAt().toString());
             context.put("textContent", p.getContent());
+            context.put("likes", react.getLikes());
+            context.put("comments", react.getComments());
+            context.put("retweets", react.getRetweets());
+            context.put("views", react.getViews());
             compiledTemplate.evaluate(writer, context);
             output = writer.toString();
         }
         ctx.result(output);
     }    
-
     }
 }
